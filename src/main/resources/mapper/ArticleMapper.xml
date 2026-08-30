@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.inkblogdb.ddd.infrastructure.database.user.UserMapper">
+
+    <select id="findById" resultType="com.inkblogdb.ddd.infrastructure.database.user.UserRecordEntity">
+        SELECT
+            BIN_TO_UUID(id) AS id,
+            name,
+            created_at,
+            updated_at
+        FROM
+            users
+        WHERE
+            id = UUID_TO_BIN(#{id})
+    </select>
+
+</mapper>

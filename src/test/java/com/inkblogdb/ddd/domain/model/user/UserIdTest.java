@@ -37,7 +37,7 @@ class UserIdTest {
   }
 
   @Test
-  void 値が36桁ではない状態で渡すと例外になること() {
+  void 値が36桁でないと例外になること() {
     // when then
     assertEquals(
         "ユーザーIDが36桁ではない a"
@@ -46,7 +46,7 @@ class UserIdTest {
   }
 
   @Test
-  void UUIDの形式ではない状態で渡すと例外になること() {
+  void UUIDの形式でないと例外になること() {
     // when then
     assertEquals(
         "ユーザーIDの形式が不正 123456789012345678901234567890123456"

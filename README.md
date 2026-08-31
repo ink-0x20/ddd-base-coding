@@ -15,3 +15,8 @@ DDD設計のベースとなるコーディングです。
 - ツール系
   - IntelliJ
   - Fork
+
+## src/main/java/com/inkblogdb/ddd/RunApplication
+
+Springのメインクラス。
+

@@ -6,12 +6,12 @@
 
     <select id="findById" resultType="com.inkblogdb.ddd.infrastructure.database.user.UserRecordEntity">
         SELECT
-            BIN_TO_UUID(id) AS id,
+            id,
             name
         FROM
             users
         WHERE
-            id = UUID_TO_BIN(#{id})
+            id = #{id}
     </select>
 
 </mapper>

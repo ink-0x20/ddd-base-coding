@@ -7,9 +7,7 @@
     <select id="findById" resultType="com.inkblogdb.ddd.infrastructure.database.user.UserRecordEntity">
         SELECT
             BIN_TO_UUID(id) AS id,
-            name,
-            created_at,
-            updated_at
+            name
         FROM
             users
         WHERE

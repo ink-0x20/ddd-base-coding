@@ -7,3 +7,5 @@ spring:
   h2:
     console:
       enabled: true # http://localhost:8080/h2-console でアクセス可能
+mybatis:
+  type-handlers-package: com.inkblogdb.ddd.infrastructure.database.typehandler

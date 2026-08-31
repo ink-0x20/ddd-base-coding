@@ -7,9 +7,6 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
-import org.springframework.core.io.support.ResourcePatternResolver;
 
 import javax.sql.DataSource;
 
@@ -21,9 +18,6 @@ public class MyBatisConfig {
   public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
     SqlSessionFactoryBean sessionFactoryBean = new SqlSessionFactoryBean();
     sessionFactoryBean.setDataSource(dataSource);
-    ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-    Resource[] mappers = resolver.getResources("classpath:mapper/**/*.xml");
-    sessionFactoryBean.setMapperLocations(mappers);
     return sessionFactoryBean.getObject();
   }
 

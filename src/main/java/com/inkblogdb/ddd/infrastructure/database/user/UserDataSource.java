@@ -23,4 +23,12 @@ public class UserDataSource implements UserRepository {
     ));
   }
 
+  public void save(User user) {
+    UserRecordEntity entity = new UserRecordEntity(
+        user.userId().value()
+        , user.userName().value()
+    );
+    userMapper.save(entity);
+  }
+
 }

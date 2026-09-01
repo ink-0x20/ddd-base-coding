@@ -5,8 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 class UserIdTest {
 
@@ -15,7 +14,11 @@ class UserIdTest {
     // when then
     assertEquals(
         "ユーザーIDがnull"
-        , assertThrows(DomainException.class, () -> new UserId(null)).getMessage()
+        , assertThrows(DomainException.class, () -> new UserId((UUID) null)).getMessage()
+    );
+    assertEquals(
+        "ユーザーIDがnull"
+        , assertThrows(DomainException.class, () -> new UserId((String) null)).getMessage()
     );
   }
 
@@ -56,14 +59,36 @@ class UserIdTest {
 
   @Test
   void UUIDv4の形式だと値が取得できること() {
-    //given
+    // given
     String uuid = UUID.randomUUID().toString();
 
     // when
     var result = new UserId(uuid);
 
     // then
+    assertEquals(uuid, result.toString());
+  }
+
+  @Test
+  void UUIDだと値が取得できること() {
+    // given
+    UUID uuid = UUID.randomUUID();
+
+    // when
+    var result = new UserId(uuid);
+
+    // then
     assertEquals(uuid, result.value());
+  }
+
+  @Test
+  void ユーザーIDが生成できること() {
+    // when
+    var result = UserId.generate();
+
+    // then
+    assertNotNull(result.value());
+    assertEquals(36, result.toString().length());
   }
 
 }

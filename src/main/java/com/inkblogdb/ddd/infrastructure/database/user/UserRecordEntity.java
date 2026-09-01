@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 import java.util.UUID;
 
 @Getter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class UserRecordEntity {
 
   private UUID id;

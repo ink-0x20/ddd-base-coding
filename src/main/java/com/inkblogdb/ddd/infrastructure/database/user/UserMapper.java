@@ -6,4 +6,6 @@ public interface UserMapper {
 
   UserRecordEntity findById(@Param("id") String id);
 
+  void save(UserRecordEntity userRecordEntity);
+
 }

@@ -14,4 +14,11 @@
             id = #{id}
     </select>
 
+    <insert id="save">
+        INSERT INTO users
+            (id, name)
+        VALUES
+            (#{id}, #{name})
+    </insert>
+
 </mapper>

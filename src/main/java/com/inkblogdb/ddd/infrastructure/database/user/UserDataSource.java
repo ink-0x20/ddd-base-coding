@@ -18,15 +18,15 @@ public class UserDataSource implements UserRepository {
   public Optional<User> findById(UserId userId) {
     Optional<UserRecordEntity> userRecordEntity = Optional.ofNullable(userMapper.findById(userId.value()));
     return userRecordEntity.map(entity -> new User(
-        new UserId(entity.getId())
-        , new UserName(entity.getName())
+        new UserId(entity.getId()),
+        new UserName(entity.getName())
     ));
   }
 
   public void save(User user) {
     UserRecordEntity entity = new UserRecordEntity(
-        user.userId().value()
-        , user.userName().value()
+        user.userId().value(),
+        user.userName().value()
     );
     userMapper.save(entity);
   }

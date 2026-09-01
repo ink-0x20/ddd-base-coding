@@ -13,12 +13,12 @@ class UserIdTest {
   void nullを渡すと例外になること() {
     // when then
     assertEquals(
-        "ユーザーIDがnull"
-        , assertThrows(DomainException.class, () -> new UserId((UUID) null)).getMessage()
+        "ユーザーIDがnull",
+        assertThrows(DomainException.class, () -> new UserId((UUID) null)).getMessage()
     );
     assertEquals(
-        "ユーザーIDがnull"
-        , assertThrows(DomainException.class, () -> new UserId((String) null)).getMessage()
+        "ユーザーIDがnull",
+        assertThrows(DomainException.class, () -> new UserId((String) null)).getMessage()
     );
   }
 
@@ -26,16 +26,16 @@ class UserIdTest {
   void 空白を渡すと例外になること() {
     // when then
     assertEquals(
-        "ユーザーIDが空白"
-        , assertThrows(DomainException.class, () -> new UserId("")).getMessage()
+        "ユーザーIDが空白",
+        assertThrows(DomainException.class, () -> new UserId("")).getMessage()
     );
     assertEquals(
-        "ユーザーIDが空白"
-        , assertThrows(DomainException.class, () -> new UserId(" ")).getMessage()
+        "ユーザーIDが空白",
+        assertThrows(DomainException.class, () -> new UserId(" ")).getMessage()
     );
     assertEquals(
-        "ユーザーIDが空白"
-        , assertThrows(DomainException.class, () -> new UserId("　")).getMessage()
+        "ユーザーIDが空白",
+        assertThrows(DomainException.class, () -> new UserId("　")).getMessage()
     );
   }
 
@@ -43,8 +43,8 @@ class UserIdTest {
   void 値が36桁でないと例外になること() {
     // when then
     assertEquals(
-        "ユーザーIDが36桁ではない a"
-        , assertThrows(DomainException.class, () -> new UserId("a")).getMessage()
+        "ユーザーIDが36桁ではない a",
+        assertThrows(DomainException.class, () -> new UserId("a")).getMessage()
     );
   }
 
@@ -52,8 +52,8 @@ class UserIdTest {
   void UUIDの形式でないと例外になること() {
     // when then
     assertEquals(
-        "ユーザーIDの形式が不正 123456789012345678901234567890123456"
-        , assertThrows(DomainException.class, () -> new UserId("123456789012345678901234567890123456")).getMessage()
+        "ユーザーIDの形式が不正 123456789012345678901234567890123456",
+        assertThrows(DomainException.class, () -> new UserId("123456789012345678901234567890123456")).getMessage()
     );
   }
 

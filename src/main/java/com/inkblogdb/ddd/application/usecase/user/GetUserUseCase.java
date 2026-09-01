@@ -22,8 +22,8 @@ public class GetUserUseCase {
       throw new UserNotFondException("ユーザーが見つかりません");
     }
     return new UserDTO(
-        user.get().userId().toString()
-        , user.get().userName().value()
+        user.get().userId().toString(),
+        user.get().userName().value()
     );
   }
 

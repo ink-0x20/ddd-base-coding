@@ -39,6 +39,9 @@ dependencies {
     // Source: https://mvnrepository.com/artifact/org.projectlombok/lombok
     compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")
+    /** Swagger */
+    // Source: https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:3.1.0")
 
     /** Test */
     // Source: https://mvnrepository.com/artifact/org.junit/junit-bom

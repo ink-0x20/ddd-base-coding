@@ -15,9 +15,10 @@ public class AddUserUseCase {
 
   public UserDTO addUser(UserName userName) {
     UserId userId = userService.addUser(userName);
-    UserDTO userDTO = new UserDTO();
-    userDTO.setId(userId.toString());
-    return userDTO;
+    return new UserDTO(
+        userId.toString(),
+        userName.value()
+    );
   }
 
 }

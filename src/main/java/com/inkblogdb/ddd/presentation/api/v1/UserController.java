@@ -1,4 +1,4 @@
-package com.inkblogdb.ddd.presenter.api.v1;
+package com.inkblogdb.ddd.presentation.api.v1;
 
 import com.inkblogdb.ddd.application.dto.user.UserDTO;
 import com.inkblogdb.ddd.application.usecase.abort.UserNotFondException;

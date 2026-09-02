@@ -1,4 +1,4 @@
-package com.inkblogdb.ddd.presenter.api.v1;
+package com.inkblogdb.ddd.presentation.api.v1;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

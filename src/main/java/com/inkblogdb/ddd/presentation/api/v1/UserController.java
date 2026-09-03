@@ -24,7 +24,7 @@ public class UserController {
 
   @PutMapping
   public UserResponse addUser(@RequestBody UserRequest userRequest) {
-    UserName userName = new UserName(userRequest.getName());
+    UserName userName = new UserName(userRequest.name());
     UserDTO userDTO = addUserUseCase.addUser(userName);
     return new UserResponse(userDTO.id(), userDTO.name());
   }

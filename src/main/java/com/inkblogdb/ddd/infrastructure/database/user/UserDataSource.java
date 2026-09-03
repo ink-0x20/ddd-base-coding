@@ -18,8 +18,8 @@ public class UserDataSource implements UserRepository {
   public Optional<User> findById(UserId userId) {
     Optional<UserRecordEntity> userRecordEntity = Optional.ofNullable(userMapper.findById(userId.value()));
     return userRecordEntity.map(entity -> new User(
-        new UserId(entity.getId()),
-        new UserName(entity.getName())
+        new UserId(entity.id()),
+        new UserName(entity.name())
     ));
   }
 

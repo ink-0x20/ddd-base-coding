@@ -14,7 +14,6 @@ DDD設計のベースとなるコーディングです。
   - JUnit 6.1.3
   - Mockito
   - Gradle(kotlin)
-  - Swagger
 - DB関連
   - MyBatis
   - MySQL
@@ -23,6 +22,7 @@ DDD設計のベースとなるコーディングです。
 - ツール関連
   - IntelliJ
   - Fork
+  - [Swagger UI](http://localhost:8080/swagger-ui/index.html)
 
 ## クリーンアーキテクチャ
 クリーンアーキテクチャを採用し下記の順番に依存させ、依存関係の逆転をさせない作りにする。

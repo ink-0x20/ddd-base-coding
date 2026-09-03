@@ -23,9 +23,10 @@ public class UserController {
   }
 
   @PutMapping
-  public UserDTO addUser(@RequestBody UserRequest userRequest) {
+  public UserResponse addUser(@RequestBody UserRequest userRequest) {
     UserName userName = new UserName(userRequest.getName());
-    return addUserUseCase.addUser(userName);
+    UserDTO userDTO = addUserUseCase.addUser(userName);
+    return new UserResponse(userDTO.id(), userDTO.name());
   }
 
 }

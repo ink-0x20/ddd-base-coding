@@ -7,6 +7,7 @@ import com.inkblogdb.ddd.application.usecase.user.GetUserUseCase;
 import com.inkblogdb.ddd.domain.model.user.UserId;
 import com.inkblogdb.ddd.domain.model.user.UserName;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,11 +19,13 @@ public class UserController {
   private final AddUserUseCase addUserUseCase;
 
   @GetMapping("/{userId}")
+  @ResponseStatus(HttpStatus.OK)
   public UserDTO getUser(@PathVariable String userId) throws UserNotFondException {
     return getUserUseCase.getUser(new UserId(userId));
   }
 
-  @PutMapping
+  @PostMapping
+  @ResponseStatus(HttpStatus.CREATED)
   public UserResponse addUser(@RequestBody UserRequest userRequest) {
     UserName userName = new UserName(userRequest.name());
     UserDTO userDTO = addUserUseCase.addUser(userName);

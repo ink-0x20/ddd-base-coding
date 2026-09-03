@@ -35,8 +35,8 @@ class AddUserUseCaseTest {
       UserDTO result = addUserUseCase.addUser(userName);
 
       // then
-      assertEquals(userId.toString(), result.getId());
-      assertEquals(userName.value(), result.getName());
+      assertEquals(userId.toString(), result.id());
+      assertEquals(userName.value(), result.name());
     }
   }
 

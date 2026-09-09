@@ -2,7 +2,6 @@ package com.inkblogdb.ddd.infrastructure.database.user;
 
 import com.inkblogdb.ddd.domain.model.user.User;
 import com.inkblogdb.ddd.domain.model.user.UserId;
-import com.inkblogdb.ddd.domain.model.user.UserName;
 import com.inkblogdb.ddd.domain.model.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -14,13 +13,10 @@ import java.util.Optional;
 public class UserDataSource implements UserRepository {
 
   private final UserMapper userMapper;
+  private final UserDomainFactory userDomainFactory;
 
   public Optional<User> findById(UserId userId) {
-    Optional<UserRecordEntity> userRecordEntity = Optional.ofNullable(userMapper.findById(userId.value()));
-    return userRecordEntity.map(entity -> new User(
-        new UserId(entity.id()),
-        new UserName(entity.name())
-    ));
+    return userDomainFactory.createFrom(userMapper.findById(userId.value()));
   }
 
   public void save(User user) {

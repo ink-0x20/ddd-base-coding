@@ -23,6 +23,8 @@ class UserDataSourceTest {
   private UserDataSource userDataSource;
   @Mock
   private UserMapper userMapper;
+  @Mock
+  private UserDomainFactory userDomainFactory;
 
   @Nested
   class findById {
@@ -30,11 +32,11 @@ class UserDataSourceTest {
     void DBに値がある場合ユーザーが取得できること() {
       // given
       UserId userId = UserId.generate();
-      UserRecordEntity entity = new UserRecordEntity(
-          userId.value(),
-          "テストユーザー名"
+      User user = new User(
+          userId,
+          new UserName("テストユーザー名")
       );
-      when(userMapper.findById(any())).thenReturn(entity);
+      when(userDomainFactory.createFrom(any())).thenReturn(Optional.of(user));
 
       // when
       Optional<User> result = userDataSource.findById(userId);

@@ -161,3 +161,33 @@ API仕様に基づき、適切なHTTPステータスやJSONでレスポンスを
   - シンプルに保つ
 - YAGNI原則
   - 将来必要になりそうだが今は不要な処理を実装しない
+
+## デザインパターン
+適切な箇所でデザインパターンを用いて実装を行う。
+- Singleton（シングルトン）
+  - アプリケーション全体で特定のクラスのインスタンスが「1つしかない」と保証する
+  - 厳密には違うが、Springの下記アノテーションなどがSpringで管理しているDIコンテナにつき1つのインスタンスを返してくれる
+    - @RestController
+    - @Service
+    - @Repository
+    - @Component
+- Factory Method（ファクトリ メソッド）
+  - オブジェクトの生成を専門とするメソッドやクラスに任せる
+  - レイヤー間のデータのやり取りの際、変換処理がややこしかったり量が多くなりがちなため、本来の処理を散らかさないようオブジェクト生成役に任せることで責務を分担させる
+  - 実装例
+    - [src/main/java/com/inkblogdb/ddd/infrastructure/database/user/UserDomainFactory.java](src/main/java/com/inkblogdb/ddd/infrastructure/database/user/UserDomainFactory.java)
+    - [src/main/java/com/inkblogdb/ddd/infrastructure/database/user/UserDataSource.java](src/main/java/com/inkblogdb/ddd/infrastructure/database/user/UserDataSource.java)
+- Decorator（デコレーター）
+  - AOP（アスペクト指向プログラミング）の手法で、既存のオブジェクトをラッパークラスで覆うことで、元のコードを変更せずに機能を追加・拡張する
+  - 分離することが難しい関心事や、複数のレイヤーにまたがる関心事を横断的関心事といい、具体的には下記のような内容が挙げられる
+    - ログの出力
+    - 例外処理
+    - 認証認可処理
+    - トランザクション管理
+  - 本来の処理の中で書いてしまうと煩雑になり、同じような処理を各所に書く必要が発生するため、元のコードを変えることなく実行する前・後・前後等に処理を追加できる
+- Strategy（ストラテジー）
+  - 目的や状況に応じてどの処理を使うかを切り替える
+  - インターフェースを用いて実装をカプセル化し、やることは同じでやり方が異なる処理を交換可能にすることで、if文やswitch文の乱立を防ぐ
+- State（ステート）
+  - 状態そのものをクラスとして表現し、状態に応じた挙動の切り替える
+  - 状態によって複雑な分岐になる場合、各状態をクラスで表現することで整理され、今どういう状態でどうすれば次にどういう状態になるかがわかりやすく、状況の変化によって状態が遷移していく

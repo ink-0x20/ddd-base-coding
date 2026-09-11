@@ -1,4 +1,4 @@
-package com.inkblogdb.ddd.presentation.api.v1;
+package com.inkblogdb.ddd.presentation.api.v1.user;
 
 import com.inkblogdb.ddd.application.dto.user.UserDTO;
 import com.inkblogdb.ddd.application.usecase.abort.UserNotFondException;
@@ -20,8 +20,9 @@ public class UserController {
 
   @GetMapping("/{userId}")
   @ResponseStatus(HttpStatus.OK)
-  public UserDTO getUser(@PathVariable String userId) throws UserNotFondException {
-    return getUserUseCase.getUser(new UserId(userId));
+  public UserResponse getUser(@PathVariable String userId) throws UserNotFondException {
+    UserDTO userDTO = getUserUseCase.getUser(new UserId(userId));
+    return new UserResponse(userDTO.id(), userDTO.name());
   }
 
   @PostMapping

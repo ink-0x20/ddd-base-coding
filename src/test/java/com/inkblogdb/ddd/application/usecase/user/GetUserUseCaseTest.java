@@ -39,7 +39,7 @@ class GetUserUseCaseTest {
     UserDTO result = getUserUseCase.getUser(userId);
 
     // then
-    assertEquals(userId.toString(), result.id());
+    assertEquals(userId.value(), result.id());
     assertEquals(user.userName().value(), result.name());
   }
 

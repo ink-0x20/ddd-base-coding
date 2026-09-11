@@ -34,7 +34,7 @@ class UserServiceTest {
       verify(userRepository, times(1)).save(any());
       assertNotNull(result);
       assertNotNull(result.value());
-      assertNotNull(result.toString());
+      assertNotNull(result.value());
     }
   }
 

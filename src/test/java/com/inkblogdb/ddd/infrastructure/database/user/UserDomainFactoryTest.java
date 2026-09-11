@@ -35,7 +35,7 @@ class UserDomainFactoryTest {
 
       // then
       assertTrue(result.isPresent());
-      assertEquals(userId, result.get().userId());
+      assertEquals(userId.value(), result.get().userId().value());
       assertEquals("テストユーザー名", result.get().userName().value());
     }
 

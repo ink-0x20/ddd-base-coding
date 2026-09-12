@@ -19,9 +19,12 @@ repositories {
 }
 
 dependencies {
-    /** Servlet */
+    /** Spring Web */
     // Source: https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web
     implementation("org.springframework.boot:spring-boot-starter-web")
+    /** Spring AOP */
+    // Source: https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-aop
+    implementation("org.springframework.boot:spring-boot-starter-aop:4.0.0-M2")
     /** DB */
     // Source: https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter
     implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:4.1.0")

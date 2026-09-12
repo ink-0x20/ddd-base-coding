@@ -11,7 +11,7 @@
             level,
             publish_at
         FROM
-            songs
+            m_songs
     </select>
 
 </mapper>

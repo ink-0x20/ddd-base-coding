@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS users (
+CREATE TABLE IF NOT EXISTS t_users (
     id CHAR(8) NOT NULL COMMENT 'ID',
     name VARCHAR(30) NOT NULL COMMENT 'ユーザー名',
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '作成日時',
@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS users (
     PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='ユーザー';
 
-INSERT INTO users (
+INSERT INTO t_users (
     id,
     name
 ) VALUES (

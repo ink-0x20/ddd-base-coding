@@ -9,13 +9,13 @@
             id,
             name
         FROM
-            users
+            t_users
         WHERE
             id = #{id}
     </select>
 
     <insert id="save">
-        INSERT INTO users
+        INSERT INTO t_users
             (id, name)
         VALUES
             (#{id}, #{name})

@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS songs (
+CREATE TABLE IF NOT EXISTS m_songs (
     id CHAR(8) NOT NULL COMMENT 'ID',
     name VARCHAR(50) NOT NULL COMMENT '楽曲名',
     level TINYINT(2) UNSIGNED NOT NULL COMMENT '楽曲Lv',
@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS songs (
     PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='楽曲';
 
-INSERT INTO songs (
+INSERT INTO m_songs (
     id,
     name,
     level

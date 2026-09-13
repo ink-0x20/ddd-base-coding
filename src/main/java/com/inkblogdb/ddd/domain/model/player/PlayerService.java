@@ -14,7 +14,7 @@ public class PlayerService {
         PlayerId.generate(),
         playerName
     );
-    playerRepository.save(player);
+    playerRepository.addPlayer(player);
     return player.playerId();
   }
 

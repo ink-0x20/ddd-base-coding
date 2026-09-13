@@ -31,7 +31,7 @@ class PlayerServiceTest {
       PlayerId result = playerService.addPlayer(playerName);
 
       // then
-      verify(playerRepository, times(1)).save(any());
+      verify(playerRepository, times(1)).addPlayer(any());
       assertNotNull(result);
       assertNotNull(result.value());
       assertNotNull(result.value());

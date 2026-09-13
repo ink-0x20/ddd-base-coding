@@ -19,12 +19,12 @@ public class PlayerDataSource implements PlayerRepository {
     return playerDomainFactory.createFrom(playerMapper.findById(playerId.value()));
   }
 
-  public void save(Player player) {
+  public void addPlayer(Player player) {
     PlayerRecordEntity entity = new PlayerRecordEntity(
         player.playerId().value(),
         player.playerName().value()
     );
-    playerMapper.save(entity);
+    playerMapper.addPlayer(entity);
   }
 
 }

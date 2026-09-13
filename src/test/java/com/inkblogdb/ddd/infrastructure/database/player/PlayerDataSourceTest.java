@@ -62,7 +62,7 @@ class PlayerDataSourceTest {
   }
 
   @Nested
-  class save {
+  class addPlayer {
     @Test
     void プレイヤーを保存できること() {
       // given
@@ -72,7 +72,7 @@ class PlayerDataSourceTest {
       );
 
       // when then
-      assertDoesNotThrow(() -> playerDataSource.save(player));
+      assertDoesNotThrow(() -> playerDataSource.addPlayer(player));
     }
   }
 

@@ -6,6 +6,6 @@ public interface PlayerRepository {
 
   Optional<Player> findById(PlayerId playerId);
 
-  void save(Player player);
+  void addPlayer(Player player);
 
 }

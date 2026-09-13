@@ -14,7 +14,7 @@
             id = #{id}
     </select>
 
-    <insert id="save">
+    <insert id="addPlayer">
         INSERT INTO t_players
             (id, name)
         VALUES

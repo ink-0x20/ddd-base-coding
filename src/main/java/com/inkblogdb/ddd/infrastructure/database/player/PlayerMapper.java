@@ -4,6 +4,6 @@ public interface PlayerMapper {
 
   PlayerRecordEntity findById(String id);
 
-  void save(PlayerRecordEntity playerRecordEntity);
+  void addPlayer(PlayerRecordEntity playerRecordEntity);
 
 }

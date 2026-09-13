@@ -1,8 +1,8 @@
 package com.inkblogdb.ddd.presentation.api.v1.user;
 
+import com.inkblogdb.ddd.application.command.user.UserCommand;
 import com.inkblogdb.ddd.application.usecase.abort.ExistsUserException;
 import com.inkblogdb.ddd.application.usecase.user.AddUserUseCase;
-import com.inkblogdb.ddd.domain.model.user.UserId;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,7 +19,7 @@ public class UserController {
   @ResponseStatus(HttpStatus.CREATED)
   public void signup(@Valid @RequestBody UserRequest userRequest) throws ExistsUserException {
     addUserUseCase.addUser(
-        new UserId(userRequest.userId())
+        new UserCommand(userRequest.userId())
     );
   }
 

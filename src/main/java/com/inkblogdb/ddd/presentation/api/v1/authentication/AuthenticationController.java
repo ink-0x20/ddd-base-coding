@@ -1,9 +1,9 @@
 package com.inkblogdb.ddd.presentation.api.v1.authentication;
 
+import com.inkblogdb.ddd.application.command.user.UserCommand;
 import com.inkblogdb.ddd.application.dto.authentication.AuthenticationDTO;
 import com.inkblogdb.ddd.application.usecase.abort.UserNotFondException;
 import com.inkblogdb.ddd.application.usecase.authentication.LoginUseCase;
-import com.inkblogdb.ddd.domain.model.user.UserId;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,7 +20,7 @@ public class AuthenticationController {
   @ResponseStatus(HttpStatus.CREATED)
   public AuthenticationResponse login(@Valid @RequestBody AuthenticationRequest authenticationRequest) throws UserNotFondException {
     AuthenticationDTO authenticationDTO = loginUseCase.login(
-        new UserId(authenticationRequest.userId())
+        new UserCommand(authenticationRequest.userId())
     );
     return new AuthenticationResponse(
         authenticationDTO.token(),

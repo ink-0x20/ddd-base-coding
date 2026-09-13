@@ -1,8 +1,8 @@
 package com.inkblogdb.ddd.application.usecase.player;
 
+import com.inkblogdb.ddd.application.command.player.AddPlayerCommand;
 import com.inkblogdb.ddd.application.usecase.abort.ExistsPlayerException;
 import com.inkblogdb.ddd.domain.model.player.PlayerId;
-import com.inkblogdb.ddd.domain.model.player.PlayerName;
 import com.inkblogdb.ddd.domain.model.player.PlayerRepository;
 import com.inkblogdb.ddd.domain.model.player.PlayerService;
 import org.junit.jupiter.api.Nested;
@@ -12,6 +12,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -30,15 +31,17 @@ class AddPlayerUseCaseTest {
     @Test
     void プレイヤーを追加できること() throws ExistsPlayerException {
       // given
-      PlayerId playerId = PlayerId.generate();
-      PlayerName playerName = new PlayerName("テストプレイヤー名");
-      when(playerRepository.exists(playerId)).thenReturn(false);
+      AddPlayerCommand addPlayerCommand = new AddPlayerCommand(
+          PlayerId.generate().value(),
+          "テストプレイヤー名"
+      );
+      when(playerRepository.exists(any())).thenReturn(false);
 
       // when
-      addPlayerUseCase.addPlayer(playerId, playerName);
+      addPlayerUseCase.addPlayer(addPlayerCommand);
 
       // then
-      verify(playerService).addPlayer(playerId, playerName);
+      verify(playerService).addPlayer(any(), any());
     }
   }
 

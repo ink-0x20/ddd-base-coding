@@ -1,12 +1,12 @@
 package com.inkblogdb.ddd.presentation.api.v1.player;
 
+import com.inkblogdb.ddd.application.command.player.AddPlayerCommand;
 import com.inkblogdb.ddd.application.dto.player.PlayerDTO;
 import com.inkblogdb.ddd.application.usecase.abort.ExistsPlayerException;
 import com.inkblogdb.ddd.application.usecase.abort.PlayerNotFondException;
 import com.inkblogdb.ddd.application.usecase.player.AddPlayerUseCase;
 import com.inkblogdb.ddd.application.usecase.player.GetPlayerUseCase;
 import com.inkblogdb.ddd.domain.model.player.PlayerId;
-import com.inkblogdb.ddd.domain.model.player.PlayerName;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -30,9 +30,11 @@ public class PlayerController {
   @PostMapping("/{playerId}")
   @ResponseStatus(HttpStatus.CREATED)
   public void addPlayer(@PathVariable String playerId, @Valid @RequestBody PlayerRequest playerRequest) throws ExistsPlayerException {
-    PlayerId id = new PlayerId(playerId);
-    PlayerName name = new PlayerName(playerRequest.name());
-    addPlayerUseCase.addPlayer(id, name);
+    AddPlayerCommand addPlayerCommand = new AddPlayerCommand(
+        playerId,
+        playerRequest.name()
+    );
+    addPlayerUseCase.addPlayer(addPlayerCommand);
   }
 
 }

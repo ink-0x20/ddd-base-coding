@@ -1,5 +1,6 @@
 package com.inkblogdb.ddd.application.usecase.authentication;
 
+import com.inkblogdb.ddd.application.command.user.UserCommand;
 import com.inkblogdb.ddd.application.dto.authentication.AuthenticationDTO;
 import com.inkblogdb.ddd.application.usecase.abort.UserNotFondException;
 import com.inkblogdb.ddd.domain.model.authentication.Authentication;
@@ -17,7 +18,8 @@ public class LoginUseCase {
   private final UserRepository userRepository;
   private final AuthenticationService authenticationService;
 
-  public AuthenticationDTO login(UserId userId) throws UserNotFondException {
+  public AuthenticationDTO login(UserCommand userCommand) throws UserNotFondException {
+    UserId userId = new UserId(userCommand.userId());
     if (userRepository.notExistsByUserId(userId)) {
       throw new UserNotFondException("ユーザーが存在しない");
     }

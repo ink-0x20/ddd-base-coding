@@ -1,7 +1,7 @@
 package com.inkblogdb.ddd.presentation.error;
 
 import com.inkblogdb.ddd.application.usecase.abort.AbortException;
-import com.inkblogdb.ddd.application.usecase.abort.NotFountException;
+import com.inkblogdb.ddd.application.usecase.abort.NotFoundException;
 import com.inkblogdb.ddd.domain.CustomException;
 import com.inkblogdb.ddd.domain.DomainException;
 import jakarta.validation.ConstraintViolationException;
@@ -28,7 +28,7 @@ import java.util.Optional;
 public class ErrorResponseHandler extends ResponseEntityExceptionHandler {
 
   @ResponseStatus(HttpStatus.NOT_FOUND)
-  @ExceptionHandler({NotFountException.class})
+  @ExceptionHandler({NotFoundException.class})
   public void notFoundError() {
   }
 

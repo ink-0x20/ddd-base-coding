@@ -1,7 +1,7 @@
 package com.inkblogdb.ddd.application.usecase.player;
 
 import com.inkblogdb.ddd.application.dto.player.PlayerDTO;
-import com.inkblogdb.ddd.application.usecase.abort.PlayerNotFondException;
+import com.inkblogdb.ddd.application.usecase.abort.PlayerNotFoundException;
 import com.inkblogdb.ddd.domain.model.player.Player;
 import com.inkblogdb.ddd.domain.model.player.PlayerId;
 import com.inkblogdb.ddd.domain.model.player.PlayerName;
@@ -24,7 +24,7 @@ class GetPlayerUseCaseTest {
   private PlayerRepository playerRepository;
 
   @Test
-  void プレイヤーを取得できること() throws PlayerNotFondException {
+  void プレイヤーを取得できること() throws PlayerNotFoundException {
     // given
     PlayerId playerId = PlayerId.generate();
     Player player = new Player(

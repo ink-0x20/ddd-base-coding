@@ -3,7 +3,7 @@ package com.inkblogdb.ddd.presentation.api.v1.player;
 import com.inkblogdb.ddd.application.command.player.AddPlayerCommand;
 import com.inkblogdb.ddd.application.dto.player.PlayerDTO;
 import com.inkblogdb.ddd.application.usecase.abort.ExistsPlayerException;
-import com.inkblogdb.ddd.application.usecase.abort.PlayerNotFondException;
+import com.inkblogdb.ddd.application.usecase.abort.PlayerNotFoundException;
 import com.inkblogdb.ddd.application.usecase.player.AddPlayerUseCase;
 import com.inkblogdb.ddd.application.usecase.player.GetPlayerUseCase;
 import com.inkblogdb.ddd.domain.model.player.PlayerId;
@@ -22,7 +22,7 @@ public class PlayerController {
 
   @GetMapping("/{playerId}")
   @ResponseStatus(HttpStatus.OK)
-  public PlayerResponse getPlayer(@PathVariable String playerId) throws PlayerNotFondException {
+  public PlayerResponse getPlayer(@PathVariable String playerId) throws PlayerNotFoundException {
     PlayerDTO playerDTO = getPlayerUseCase.getPlayer(new PlayerId(playerId));
     return new PlayerResponse(playerDTO.id(), playerDTO.name());
   }

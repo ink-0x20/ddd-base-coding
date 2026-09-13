@@ -7,6 +7,7 @@ import com.inkblogdb.ddd.application.usecase.player.AddPlayerUseCase;
 import com.inkblogdb.ddd.application.usecase.player.GetPlayerUseCase;
 import com.inkblogdb.ddd.domain.model.player.PlayerId;
 import com.inkblogdb.ddd.domain.model.player.PlayerName;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +29,7 @@ public class PlayerController {
 
   @PostMapping("/{playerId}")
   @ResponseStatus(HttpStatus.CREATED)
-  public void addPlayer(@PathVariable String playerId, @RequestBody PlayerRequest playerRequest) throws ExistsPlayerException {
+  public void addPlayer(@PathVariable String playerId, @Valid @RequestBody PlayerRequest playerRequest) throws ExistsPlayerException {
     PlayerId id = new PlayerId(playerId);
     PlayerName name = new PlayerName(playerRequest.name());
     addPlayerUseCase.addPlayer(id, name);

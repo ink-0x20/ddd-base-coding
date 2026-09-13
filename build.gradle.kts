@@ -19,39 +19,42 @@ repositories {
 }
 
 dependencies {
-    /** Spring Web */
+    /** Spring Web(サーブレット) */
     // Source: https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web
     implementation("org.springframework.boot:spring-boot-starter-web")
-    /** Spring Security */
+    /** Spring Security(セキュリティ設定) */
     // Source: https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security
     implementation("org.springframework.boot:spring-boot-starter-security")
+    /** Spring Validation(属性チェック) */
+    // Source: https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation
+    implementation("org.springframework.boot:spring-boot-starter-validation")
     /** Spring AOP */
     // Source: https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-aop
     implementation("org.springframework.boot:spring-boot-starter-aop:4.0.0-M2")
-    /** .env */
+    /** .env(環境変数) */
     // Source: https://mvnrepository.com/artifact/io.github.cdimascio/dotenv-java
     implementation("io.github.cdimascio:dotenv-java:3.2.0")
     /** DB */
     // Source: https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter
     implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:4.1.0")
-    /** Flyway */
+    /** Flyway(DBマイグレーション) */
     // Source: https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-flyway
     implementation("org.springframework.boot:spring-boot-starter-flyway")
     // Source: https://mvnrepository.com/artifact/org.flywaydb/flyway-mysql
     implementation("org.flywaydb:flyway-mysql")
     // Source: https://mvnrepository.com/artifact/com.mysql/mysql-connector-j
     runtimeOnly("com.mysql:mysql-connector-j")
-    /** h2 */
+    /** h2(テストDB) */
     // Source: https://mvnrepository.com/artifact/com.h2database/h2
     implementation("com.h2database:h2")
     /** Lombok */
     // Source: https://mvnrepository.com/artifact/org.projectlombok/lombok
     compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")
-    /** Swagger */
+    /** Swagger(APIドキュメント) */
     // Source: https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:3.1.0")
-    /** JWT */
+    /** JWT(認証) */
     // Source: https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-api
     implementation("io.jsonwebtoken:jjwt-api:0.13.0")
     // Source: https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-impl

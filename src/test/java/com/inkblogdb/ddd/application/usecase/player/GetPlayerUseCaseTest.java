@@ -2,14 +2,15 @@ package com.inkblogdb.ddd.application.usecase.player;
 
 import com.inkblogdb.ddd.application.dto.player.PlayerDTO;
 import com.inkblogdb.ddd.application.usecase.abort.PlayerNotFondException;
-import com.inkblogdb.ddd.domain.model.player.*;
+import com.inkblogdb.ddd.domain.model.player.Player;
+import com.inkblogdb.ddd.domain.model.player.PlayerId;
+import com.inkblogdb.ddd.domain.model.player.PlayerName;
+import com.inkblogdb.ddd.domain.model.player.PlayerRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
@@ -30,7 +31,7 @@ class GetPlayerUseCaseTest {
         playerId,
         new PlayerName("テストプレイヤー名")
     );
-    when(playerRepository.findById(playerId)).thenReturn(Optional.of(player));
+    when(playerRepository.findById(playerId)).thenReturn(player);
 
     // when
     PlayerDTO result = getPlayerUseCase.getPlayer(playerId);

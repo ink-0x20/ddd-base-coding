@@ -8,10 +8,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
 class PlayerDomainFactoryTest {
@@ -31,21 +28,12 @@ class PlayerDomainFactoryTest {
       );
 
       // when
-      Optional<Player> result = playerDomainFactory.createFrom(entity);
+      Player result = playerDomainFactory.createFrom(entity);
 
       // then
-      assertTrue(result.isPresent());
-      assertEquals(playerId.value(), result.get().playerId().value());
-      assertEquals("テストプレイヤー名", result.get().playerName().value());
-    }
-
-    @Test
-    void 引数がnullの場合プレイヤーが空になること() {
-      // when
-      Optional<Player> result = playerDomainFactory.createFrom(null);
-
-      // then
-      assertTrue(result.isEmpty());
+      assertNotNull(result);
+      assertEquals(playerId.value(), result.playerId().value());
+      assertEquals("テストプレイヤー名", result.playerName().value());
     }
   }
 

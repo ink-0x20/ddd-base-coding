@@ -4,6 +4,14 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.inkblogdb.ddd.infrastructure.database.player.PlayerMapper">
 
+    <select id="exists" resultType="boolean">
+        SELECT EXISTS (
+            SELECT 1
+            FROM t_players
+            WHERE id = #{id}
+        )
+    </select>
+
     <select id="findById" resultType="com.inkblogdb.ddd.infrastructure.database.player.PlayerRecordEntity">
         SELECT
             id,

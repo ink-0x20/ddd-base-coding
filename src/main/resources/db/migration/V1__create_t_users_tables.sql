@@ -1,15 +1,8 @@
 CREATE TABLE IF NOT EXISTS t_users (
-    id CHAR(8) NOT NULL COMMENT 'ID',
-    name VARCHAR(30) NOT NULL COMMENT 'ユーザー名',
+    id BINARY(16) NOT NULL COMMENT 'ID',
+    player_id CHAR(8) NOT NULL COMMENT 'プレイヤーID',
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '作成日時',
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新日時',
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+    UNIQUE KEY unique_player_id (player_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='ユーザー';
-
-INSERT INTO t_users (
-    id,
-    name
-) VALUES (
-    'zzzzzzzz',
-    'テストユーザー'
-);

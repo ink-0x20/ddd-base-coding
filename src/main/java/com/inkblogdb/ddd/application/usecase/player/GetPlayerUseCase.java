@@ -8,8 +8,6 @@ import com.inkblogdb.ddd.domain.model.player.PlayerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.Optional;
-
 @Component
 @RequiredArgsConstructor
 public class GetPlayerUseCase {
@@ -17,13 +15,13 @@ public class GetPlayerUseCase {
   private final PlayerRepository playerRepository;
 
   public PlayerDTO getPlayer(PlayerId playerId) throws PlayerNotFondException {
-    Optional<Player> player = playerRepository.findById(playerId);
-    if (player.isEmpty()) {
+    if (playerRepository.notExists(playerId)) {
       throw new PlayerNotFondException("プレイヤーが存在しない");
     }
+    Player player = playerRepository.findById(playerId);
     return new PlayerDTO(
-        player.get().playerId().value(),
-        player.get().playerName().value()
+        player.playerId().value(),
+        player.playerName().value()
     );
   }
 

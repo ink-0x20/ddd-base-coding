@@ -1,6 +1,7 @@
 package com.inkblogdb.ddd.presentation.api.v1.player;
 
 import com.inkblogdb.ddd.application.dto.player.PlayerDTO;
+import com.inkblogdb.ddd.application.usecase.abort.ExistsPlayerException;
 import com.inkblogdb.ddd.application.usecase.abort.PlayerNotFondException;
 import com.inkblogdb.ddd.application.usecase.player.AddPlayerUseCase;
 import com.inkblogdb.ddd.application.usecase.player.GetPlayerUseCase;
@@ -25,12 +26,12 @@ public class PlayerController {
     return new PlayerResponse(playerDTO.id(), playerDTO.name());
   }
 
-  @PostMapping
+  @PostMapping("/{playerId}")
   @ResponseStatus(HttpStatus.CREATED)
-  public PlayerResponse addPlayer(@RequestBody PlayerRequest playerRequest) {
-    PlayerName playerName = new PlayerName(playerRequest.name());
-    PlayerDTO playerDTO = addPlayerUseCase.addPlayer(playerName);
-    return new PlayerResponse(playerDTO.id(), playerDTO.name());
+  public void addPlayer(@PathVariable String playerId, @RequestBody PlayerRequest playerRequest) throws ExistsPlayerException {
+    PlayerId id = new PlayerId(playerId);
+    PlayerName name = new PlayerName(playerRequest.name());
+    addPlayerUseCase.addPlayer(id, name);
   }
 
 }

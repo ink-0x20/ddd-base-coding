@@ -7,9 +7,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
@@ -25,16 +22,14 @@ class PlayerServiceTest {
     @Test
     void プレイヤーを追加できること() {
       // given
+      PlayerId playerId = PlayerId.generate();
       PlayerName playerName = new PlayerName("テストプレイヤー名");
 
       // when
-      PlayerId result = playerService.addPlayer(playerName);
+      playerService.addPlayer(playerId, playerName);
 
       // then
-      verify(playerRepository, times(1)).addPlayer(any());
-      assertNotNull(result);
-      assertNotNull(result.value());
-      assertNotNull(result.value());
+      verify(playerRepository).addPlayer(playerId, playerName);
     }
   }
 

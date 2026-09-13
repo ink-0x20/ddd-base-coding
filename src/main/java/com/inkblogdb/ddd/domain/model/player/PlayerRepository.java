@@ -1,11 +1,13 @@
 package com.inkblogdb.ddd.domain.model.player;
 
-import java.util.Optional;
-
 public interface PlayerRepository {
 
-  Optional<Player> findById(PlayerId playerId);
+  boolean exists(PlayerId playerId);
 
-  void addPlayer(Player player);
+  boolean notExists(PlayerId playerId);
+
+  Player findById(PlayerId playerId);
+
+  void addPlayer(PlayerId playerId, PlayerName playerName);
 
 }

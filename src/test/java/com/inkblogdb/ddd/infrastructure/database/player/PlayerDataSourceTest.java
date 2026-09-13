@@ -10,10 +10,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -36,15 +35,15 @@ class PlayerDataSourceTest {
           playerId,
           new PlayerName("テストプレイヤー名")
       );
-      when(playerDomainFactory.createFrom(any())).thenReturn(Optional.of(player));
+      when(playerDomainFactory.createFrom(any())).thenReturn(player);
 
       // when
-      Optional<Player> result = playerDataSource.findById(playerId);
+      Player result = playerDataSource.findById(playerId);
 
       // then
-      assertTrue(result.isPresent());
-      assertEquals(playerId, result.get().playerId());
-      assertEquals("テストプレイヤー名", result.get().playerName().value());
+      assertNotNull(result);
+      assertEquals(playerId, result.playerId());
+      assertEquals("テストプレイヤー名", result.playerName().value());
     }
 
     @Test
@@ -54,10 +53,10 @@ class PlayerDataSourceTest {
       when(playerMapper.findById(any())).thenReturn(null);
 
       // when
-      Optional<Player> result = playerDataSource.findById(playerId);
+      Player result = playerDataSource.findById(playerId);
 
       // then
-      assertTrue(result.isEmpty());
+      assertNull(result);
     }
   }
 
@@ -66,13 +65,14 @@ class PlayerDataSourceTest {
     @Test
     void プレイヤーを保存できること() {
       // given
-      Player player = new Player(
-          PlayerId.generate(),
-          new PlayerName("テストプレイヤー名")
-      );
+      PlayerId playerId = PlayerId.generate();
+      PlayerName playerName = new PlayerName("テストプレイヤー名");
 
-      // when then
-      assertDoesNotThrow(() -> playerDataSource.addPlayer(player));
+      // when
+      playerDataSource.addPlayer(playerId, playerName);
+
+      // then
+      verify(playerMapper).addPlayer(any());
     }
   }
 

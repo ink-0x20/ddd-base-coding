@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.inkblogdb.ddd.infrastructure.database.user.UserMapper">
+
+    <select id="existsByUserId" resultType="boolean">
+        SELECT EXISTS (
+            SELECT 1
+            FROM t_users
+            WHERE id = #{id}
+        )
+    </select>
+
+    <select id="existsByPlayerId" resultType="boolean">
+        SELECT EXISTS (
+            SELECT 1
+            FROM t_users
+            WHERE player_id = #{playerId}
+        )
+    </select>
+
+    <select id="findById" resultType="com.inkblogdb.ddd.infrastructure.database.user.UserRecordEntity">
+        SELECT
+            id,
+            player_id
+        FROM
+            t_users
+        WHERE
+            id = #{id}
+    </select>
+
+    <insert id="addUser">
+        INSERT INTO t_users
+            (id, player_id)
+        VALUES
+            (#{id}, #{playerId})
+    </insert>
+
+</mapper>

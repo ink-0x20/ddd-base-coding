@@ -9,13 +9,8 @@ public class PlayerService {
 
   private final PlayerRepository playerRepository;
 
-  public PlayerId addPlayer(PlayerName playerName) {
-    Player player = new Player(
-        PlayerId.generate(),
-        playerName
-    );
-    playerRepository.addPlayer(player);
-    return player.playerId();
+  public void addPlayer(PlayerId playerId, PlayerName playerName) {
+    playerRepository.addPlayer(playerId, playerName);
   }
 
 }

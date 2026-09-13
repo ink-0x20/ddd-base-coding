@@ -19,7 +19,7 @@ public class GetPlayerUseCase {
   public PlayerDTO getPlayer(PlayerId playerId) throws PlayerNotFondException {
     Optional<Player> player = playerRepository.findById(playerId);
     if (player.isEmpty()) {
-      throw new PlayerNotFondException("プレイヤーが見つかりません");
+      throw new PlayerNotFondException("プレイヤーが存在しない");
     }
     return new PlayerDTO(
         player.get().playerId().value(),

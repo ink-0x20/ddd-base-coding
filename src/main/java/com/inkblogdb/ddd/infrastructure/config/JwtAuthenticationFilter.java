@@ -1,4 +1,4 @@
-package com.inkblogdb.ddd.application.config;
+package com.inkblogdb.ddd.infrastructure.config;
 
 import com.inkblogdb.ddd.domain.model.authentication.AuthenticationRepository;
 import com.inkblogdb.ddd.domain.model.authentication.AuthenticationToken;

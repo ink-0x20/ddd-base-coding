@@ -1,4 +1,4 @@
-package com.inkblogdb.ddd.application.log;
+package com.inkblogdb.ddd.infrastructure.log;
 
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
@@ -58,17 +58,17 @@ public class CleanArchitectureLayerLogger {
     log.warn("Domain:ERROR:{}:{}", joinPoint.getSignature(), error.getMessage());
   }
 
-  @Before("execution(* com.inkblogdb.ddd.infrastructure..*.*(..)))")
+  @Before("execution(* com.inkblogdb.ddd.infrastructure.database..*.*(..)))")
   public void infrastructureStartLog(JoinPoint joinPoint){
     log.info("Infrastructure:START:{}:{}", joinPoint.getSignature(), joinPoint.getArgs());
   }
 
-  @AfterReturning(value = "execution(* com.inkblogdb.ddd.infrastructure..*.*(..)))", returning = "returnValue")
+  @AfterReturning(value = "execution(* com.inkblogdb.ddd.infrastructure.database..*.*(..)))", returning = "returnValue")
   public void infrastructureEndLog(JoinPoint joinPoint, Object returnValue){
     log.info("Infrastructure:END:{}.{}:{}", joinPoint.getSignature().getDeclaringTypeName(), joinPoint.getSignature().getName(), returnValue);
   }
 
-  @AfterThrowing(value = "execution(* com.inkblogdb.ddd.infrastructure..*.*(..)))", throwing = "error")
+  @AfterThrowing(value = "execution(* com.inkblogdb.ddd.infrastructure.database..*.*(..)))", throwing = "error")
   public void infrastructureExceptionLog(JoinPoint joinPoint, Throwable error){
     log.error("Infrastructure:ERROR:{}:{}", joinPoint.getSignature(), error.getMessage());
   }

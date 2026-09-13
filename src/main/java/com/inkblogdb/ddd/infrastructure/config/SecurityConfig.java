@@ -1,4 +1,4 @@
-package com.inkblogdb.ddd.application.config;
+package com.inkblogdb.ddd.infrastructure.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

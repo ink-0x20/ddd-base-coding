@@ -1,4 +1,4 @@
-package com.inkblogdb.ddd.application.config;
+package com.inkblogdb.ddd.infrastructure.config;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;

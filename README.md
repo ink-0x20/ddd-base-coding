@@ -56,6 +56,11 @@ DDD設計のベースとなるコーディングです。
 
 名前が長いので以下、インフラ層と称する。
 
+#### 設定
+アクセス制御などのセキュリティ設定や、データベースの設定など、アプリケーションの設定を行う。
+
+フレームワークや外部システムに関する設定のため、一番外側のレイヤーで管理する。
+
 #### 外部システムの都合を閉じ込める
 必ず外部システムの都合はこのレイヤー内に収めるようにし、他レイヤーに情報が漏れないようにする。
 
@@ -121,13 +126,6 @@ API仕様に基づき、適切なHTTPステータスやJSONでレスポンスを
 
 ### application（アプリケーション層）
 システムを動かすうえで必要な設定や、利用者が目的を達成するためのシナリオ（ユースケース）を表現するレイヤー。
-
-#### 設定
-アクセス制御などのセキュリティ設定や、データベースの設定など、アプリケーションの設定を行う。
-
-ただし、application.yamlなどに設定するような別レイヤーから参照が必要になる設定は行わず、あくまでアプリケーション層で完結できる設定を行う。
-
-※アノテーションによるDIを駆使して設定
 
 #### ユースケース
 達成したい目的や仕事の単位にクラスを分割し、目的を達成するための「誰が・どんな順序で・何をするか」という段取りを表現する。
@@ -200,7 +198,7 @@ API仕様に基づき、適切なHTTPステータスやJSONでレスポンスを
     - トランザクション管理
   - 本来の処理の中で書いてしまうと煩雑になり、同じような処理を各所に書く必要が発生するため、元のコードを変えることなく実行する前・後・前後等に処理を追加できる
   - 実装例
-    - [src/main/java/com/inkblogdb/ddd/application/log/CleanArchitectureLayerLogger.java](src/main/java/com/inkblogdb/ddd/application/log/CleanArchitectureLayerLogger.java)
+    - [src/main/java/com/inkblogdb/ddd/infrastructure/log/CleanArchitectureLayerLogger.java](src/main/java/com/inkblogdb/ddd/infrastructure/log/CleanArchitectureLayerLogger.java)
 - Strategy（ストラテジー）
   - 目的や状況に応じてどの処理を使うかを切り替える
   - インターフェースを用いて実装をカプセル化し、やることは同じでやり方が異なる処理を交換可能にすることで、if文やswitch文の乱立を防ぐ

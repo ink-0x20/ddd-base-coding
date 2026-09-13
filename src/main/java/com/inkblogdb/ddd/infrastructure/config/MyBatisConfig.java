@@ -1,4 +1,4 @@
-package com.inkblogdb.ddd.application.config;
+package com.inkblogdb.ddd.infrastructure.config;
 
 import org.h2.server.web.JakartaWebServlet;
 import org.mybatis.spring.annotation.MapperScan;

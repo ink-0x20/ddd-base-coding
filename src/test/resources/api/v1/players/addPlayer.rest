@@ -1,0 +1,14 @@
+### プレイヤー追加
+POST http://localhost:8080/api/v1/players
+Content-Type:  application/json
+
+{
+  "name": "テストプレイヤー"
+}
+
+> {%
+  client.global.set("id", response.body.id);
+  %}
+
+### プレイヤー取得
+GET http://localhost:8080/api/v1/players/{{id}}

@@ -11,3 +11,5 @@ mybatis:
   type-handlers-package: com.inkblogdb.ddd.infrastructure.database
   configuration:
     map-underscore-to-camel-case: true
+jwt:
+  secret-key: ${JWT_SECRET_KEY}

@@ -22,9 +22,15 @@ dependencies {
     /** Spring Web */
     // Source: https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web
     implementation("org.springframework.boot:spring-boot-starter-web")
+    /** Spring Security */
+    // Source: https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security
+    implementation("org.springframework.boot:spring-boot-starter-security")
     /** Spring AOP */
     // Source: https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-aop
     implementation("org.springframework.boot:spring-boot-starter-aop:4.0.0-M2")
+    /** .env */
+    // Source: https://mvnrepository.com/artifact/io.github.cdimascio/dotenv-java
+    implementation("io.github.cdimascio:dotenv-java:3.2.0")
     /** DB */
     // Source: https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter
     implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:4.1.0")
@@ -45,6 +51,13 @@ dependencies {
     /** Swagger */
     // Source: https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:3.1.0")
+    /** JWT */
+    // Source: https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-api
+    implementation("io.jsonwebtoken:jjwt-api:0.13.0")
+    // Source: https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-impl
+    runtimeOnly("io.jsonwebtoken:jjwt-impl:0.13.0")
+    // Source: https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-jackson
+    runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.13.0")
 
     /** Test */
     // Source: https://mvnrepository.com/artifact/org.junit/junit-bom

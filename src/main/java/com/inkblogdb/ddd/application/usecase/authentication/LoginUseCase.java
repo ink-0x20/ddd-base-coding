@@ -1,0 +1,35 @@
+package com.inkblogdb.ddd.application.usecase.authentication;
+
+import com.inkblogdb.ddd.application.dto.authentication.AuthenticationDTO;
+import com.inkblogdb.ddd.application.usecase.abort.UserNotFondException;
+import com.inkblogdb.ddd.domain.model.authentication.Authentication;
+import com.inkblogdb.ddd.domain.model.authentication.AuthenticationService;
+import com.inkblogdb.ddd.domain.model.user.User;
+import com.inkblogdb.ddd.domain.model.user.UserId;
+import com.inkblogdb.ddd.domain.model.user.UserRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
+
+@Component
+@RequiredArgsConstructor
+public class LoginUseCase {
+
+  private final UserRepository userRepository;
+  private final AuthenticationService authenticationService;
+
+  public AuthenticationDTO login(UserId userId) throws UserNotFondException {
+    if (userRepository.notExistsByUserId(userId)) {
+      throw new UserNotFondException("ユーザーが存在しない");
+    }
+    // ユーザーを検索
+    User user = userRepository.findById(userId);
+
+    // ログイン
+    Authentication authentication = authenticationService.login(user.playerId());
+    return new AuthenticationDTO(
+        authentication.playerId().value(),
+        authentication.authenticationToken().value()
+    );
+  }
+
+}

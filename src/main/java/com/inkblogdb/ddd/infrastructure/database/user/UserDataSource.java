@@ -5,6 +5,7 @@ import com.inkblogdb.ddd.domain.model.user.UserRepository;
 import com.inkblogdb.ddd.domain.model.user.UserId;
 import com.inkblogdb.ddd.domain.model.player.PlayerId;
 import com.inkblogdb.ddd.domain.type.Exists;
+import com.inkblogdb.ddd.infrastructure.InfrastructureException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -39,7 +40,11 @@ public class UserDataSource implements UserRepository {
         userId.value(),
         playerId.value()
     );
-    userMapper.addUser(userRecordEntity);
+    try {
+      userMapper.addUser(userRecordEntity);
+    } catch (Exception e) {
+      throw new InfrastructureException(e);
+    }
   }
 
 }

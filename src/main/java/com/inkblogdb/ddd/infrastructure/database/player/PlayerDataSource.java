@@ -5,6 +5,7 @@ import com.inkblogdb.ddd.domain.model.player.PlayerId;
 import com.inkblogdb.ddd.domain.model.player.PlayerName;
 import com.inkblogdb.ddd.domain.model.player.PlayerRepository;
 import com.inkblogdb.ddd.domain.type.Exists;
+import com.inkblogdb.ddd.infrastructure.InfrastructureException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -31,7 +32,11 @@ public class PlayerDataSource implements PlayerRepository {
         playerId.value(),
         playerName.value()
     );
-    playerMapper.addPlayer(entity);
+    try {
+      playerMapper.addPlayer(entity);
+    } catch (Exception e) {
+      throw new InfrastructureException(e);
+    }
   }
 
 }

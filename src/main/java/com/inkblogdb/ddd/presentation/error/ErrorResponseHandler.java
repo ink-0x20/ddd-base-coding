@@ -4,6 +4,7 @@ import com.inkblogdb.ddd.application.usecase.abort.AbortException;
 import com.inkblogdb.ddd.application.usecase.abort.NotFoundException;
 import com.inkblogdb.ddd.domain.CustomException;
 import com.inkblogdb.ddd.domain.DomainException;
+import com.inkblogdb.ddd.infrastructure.InfrastructureException;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
 import org.jspecify.annotations.NonNull;
@@ -54,6 +55,18 @@ public class ErrorResponseHandler extends ResponseEntityExceptionHandler {
         ),
         HttpHeaders.EMPTY,
         HttpStatus.BAD_REQUEST);
+  }
+
+  @ExceptionHandler({InfrastructureException.class})
+  public ResponseEntity<Object> infrastructureError(CustomException exception) {
+    return new ResponseEntity<>(
+        new ErrorResponse(
+            exception.type(),
+            exception.message(),
+            exception.detail()
+        ),
+        HttpHeaders.EMPTY,
+        HttpStatus.INTERNAL_SERVER_ERROR);
   }
 
   @ExceptionHandler(ConstraintViolationException.class)

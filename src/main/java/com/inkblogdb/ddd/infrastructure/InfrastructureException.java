@@ -4,6 +4,10 @@ import com.inkblogdb.ddd.domain.CustomException;
 
 public class InfrastructureException extends RuntimeException implements CustomException {
 
+  public InfrastructureException(String message) {
+    super(message);
+  }
+
   public InfrastructureException(Exception e) {
     super(e.getMessage());
   }

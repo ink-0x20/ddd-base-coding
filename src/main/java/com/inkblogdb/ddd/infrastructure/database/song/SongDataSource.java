@@ -13,7 +13,9 @@ public class SongDataSource implements SongRepository {
   private final SongDomainFactory songDomainFactory;
 
   public Songs findAll() {
-    return songDomainFactory.createFrom(songMapper.findAll());
+    return songDomainFactory.createFrom(
+        songMapper.findAll()
+    );
   }
 
 }

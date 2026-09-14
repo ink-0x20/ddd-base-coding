@@ -1,12 +1,17 @@
 package com.inkblogdb.ddd.infrastructure.database.player;
 
-import com.inkblogdb.ddd.domain.model.player.Player;
-import com.inkblogdb.ddd.domain.model.player.PlayerId;
+import com.inkblogdb.ddd.domain.model.song.Songs;
+import com.inkblogdb.ddd.infrastructure.InfrastructureException;
+import com.inkblogdb.ddd.infrastructure.database.song.SongDomainFactory;
+import com.inkblogdb.ddd.infrastructure.database.song.SongRecordEntity;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.time.LocalDateTime;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,26 +19,38 @@ import static org.junit.jupiter.api.Assertions.*;
 class PlayerDomainFactoryTest {
 
   @InjectMocks
-  private PlayerDomainFactory playerDomainFactory;
+  private SongDomainFactory songDomainFactory;
 
   @Nested
   class createFrom {
     @Test
-    void 引数に値がある場合プレイヤーが取得できること() {
+    void 生成できること() {
       // given
-      PlayerId playerId = PlayerId.generate();
-      PlayerRecordEntity entity = new PlayerRecordEntity(
-          playerId.value(),
-          "テストプレイヤー名"
+      List<SongRecordEntity> songs = List.of(
+          new SongRecordEntity(
+              "zzzzzzzz",
+              "テスト楽曲",
+              5,
+              LocalDateTime.now()
+          )
       );
 
       // when
-      Player result = playerDomainFactory.createFrom(entity);
+      Songs result = songDomainFactory.createFrom(songs);
 
       // then
-      assertNotNull(result);
-      assertEquals(playerId.value(), result.playerId().value());
-      assertEquals("テストプレイヤー名", result.playerName().value());
+      assertEquals(1, result.songs().size());
+      assertTrue(result.songs().stream().findFirst().isPresent());
+      assertEquals("zzzzzzzz", result.songs().stream().findFirst().get().songId().value());
+      assertEquals("テスト楽曲", result.songs().stream().findFirst().get().songName().value());
+      assertEquals(5, result.songs().stream().findFirst().get().songLevel().value());
+      assertNotNull(result.songs().stream().findFirst().get().songReleaseDateTime().value());
+    }
+
+    @Test
+    void nullの場合エラーになること() {
+      // when then
+      assertThrows(InfrastructureException.class, () -> songDomainFactory.createFrom(null));
     }
   }
 

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 public class UserDataSource implements UserRepository {
 
   private final UserMapper userMapper;
+  private final UserDomainFactory userDomainFactory;
 
   @Override
   public Exists existsByUserId(UserId userId) {
@@ -27,10 +28,8 @@ public class UserDataSource implements UserRepository {
 
   @Override
   public User findById(UserId userId) {
-    UserRecordEntity userRecordEntity = userMapper.findById(userId.value());
-    return new User(
-        new UserId(userRecordEntity.id()),
-        new PlayerId(userRecordEntity.playerId())
+    return userDomainFactory.createFrom(
+        userMapper.findById(userId.value())
     );
   }
 

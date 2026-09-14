@@ -3,6 +3,8 @@ package com.inkblogdb.ddd.infrastructure.database.player;
 import com.inkblogdb.ddd.domain.model.player.Player;
 import com.inkblogdb.ddd.domain.model.player.PlayerId;
 import com.inkblogdb.ddd.domain.model.player.PlayerName;
+import com.inkblogdb.ddd.domain.type.Exists;
+import com.inkblogdb.ddd.infrastructure.InfrastructureException;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -12,8 +14,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class PlayerDataSourceTest {
@@ -26,9 +27,36 @@ class PlayerDataSourceTest {
   private PlayerDomainFactory playerDomainFactory;
 
   @Nested
+  class exists {
+    @Test
+    void 存在すること() {
+      // given
+      when(playerMapper.exists(any())).thenReturn(Exists.EXISTS);
+
+      // when
+      Exists result = playerDataSource.exists(PlayerId.generate());
+
+      // then
+      assertTrue(result.isExists());
+    }
+
+    @Test
+    void 存在しないこと() {
+      // given
+      when(playerMapper.exists(any())).thenReturn(Exists.NOT_EXISTS);
+
+      // when
+      Exists result = playerDataSource.exists(PlayerId.generate());
+
+      // then
+      assertTrue(result.isNotExists());
+    }
+  }
+
+  @Nested
   class findById {
     @Test
-    void DBに値がある場合プレイヤーが取得できること() {
+    void 値が取得できること() {
       // given
       PlayerId playerId = PlayerId.generate();
       Player player = new Player(
@@ -47,23 +75,20 @@ class PlayerDataSourceTest {
     }
 
     @Test
-    void DBに値がない場合プレイヤーが空になること() {
+    void 存在しない場合エラーになること() {
       // given
       PlayerId playerId = PlayerId.generate();
-      when(playerMapper.findById(any())).thenReturn(null);
+      when(playerDomainFactory.createFrom(any())).thenThrow(InfrastructureException.class);
 
-      // when
-      Player result = playerDataSource.findById(playerId);
-
-      // then
-      assertNull(result);
+      // when then
+      assertThrows(InfrastructureException.class, () -> playerDataSource.findById(playerId));
     }
   }
 
   @Nested
   class addPlayer {
     @Test
-    void プレイヤーを保存できること() {
+    void 値が保存できること() {
       // given
       PlayerId playerId = PlayerId.generate();
       PlayerName playerName = new PlayerName("テストプレイヤー名");
@@ -73,6 +98,17 @@ class PlayerDataSourceTest {
 
       // then
       verify(playerMapper).addPlayer(any());
+    }
+
+    @Test
+    void 失敗した場合エラーになること() {
+      // given
+      PlayerId playerId = PlayerId.generate();
+      PlayerName playerName = new PlayerName("テストプレイヤー名");
+      doThrow(InfrastructureException.class).when(playerMapper).addPlayer(any());
+
+      // when then
+      assertThrows(InfrastructureException.class, () -> playerDataSource.addPlayer(playerId, playerName));
     }
   }
 

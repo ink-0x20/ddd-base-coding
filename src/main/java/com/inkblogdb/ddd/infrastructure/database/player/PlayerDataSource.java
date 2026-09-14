@@ -23,7 +23,9 @@ public class PlayerDataSource implements PlayerRepository {
 
   @Override
   public Player findById(PlayerId playerId) {
-    return playerDomainFactory.createFrom(playerMapper.findById(playerId.value()));
+    return playerDomainFactory.createFrom(
+        playerMapper.findById(playerId.value())
+    );
   }
 
   @Override

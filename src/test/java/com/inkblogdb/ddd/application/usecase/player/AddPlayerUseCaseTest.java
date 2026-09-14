@@ -4,7 +4,6 @@ import com.inkblogdb.ddd.application.command.player.AddPlayerCommand;
 import com.inkblogdb.ddd.application.usecase.abort.ExistsPlayerException;
 import com.inkblogdb.ddd.domain.model.player.PlayerId;
 import com.inkblogdb.ddd.domain.model.player.PlayerRepository;
-import com.inkblogdb.ddd.domain.model.player.PlayerService;
 import com.inkblogdb.ddd.domain.type.Exists;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -24,8 +23,6 @@ class AddPlayerUseCaseTest {
   private AddPlayerUseCase addPlayerUseCase;
   @Mock
   private PlayerRepository playerRepository;
-  @Mock
-  private PlayerService playerService;
 
   @Nested
   class addPlayer {
@@ -42,7 +39,7 @@ class AddPlayerUseCaseTest {
       addPlayerUseCase.addPlayer(addPlayerCommand);
 
       // then
-      verify(playerService).addPlayer(any(), any());
+      verify(playerRepository).addPlayer(any(), any());
     }
   }
 

@@ -9,33 +9,33 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class PlayerNameTest {
 
   @Test
-  void nullを渡すと例外になること() {
+  void nullを渡すとエラーになること() {
     // when then
     assertEquals(
-        "プレイヤー名がnull",
+        "プレイヤー名が空",
         assertThrows(DomainException.class, () -> new PlayerName(null)).getMessage()
     );
   }
 
   @Test
-  void 空白を渡すと例外になること() {
+  void 空白を渡すとエラーになること() {
     // when then
     assertEquals(
-        "プレイヤー名が空白",
+        "プレイヤー名が空",
         assertThrows(DomainException.class, () -> new PlayerName("")).getMessage()
     );
     assertEquals(
-        "プレイヤー名が空白",
+        "プレイヤー名が空",
         assertThrows(DomainException.class, () -> new PlayerName(" ")).getMessage()
     );
     assertEquals(
-        "プレイヤー名が空白",
+        "プレイヤー名が空",
         assertThrows(DomainException.class, () -> new PlayerName("　")).getMessage()
     );
   }
 
   @Test
-  void 値が30桁を超えると例外になること() {
+  void 値が30桁を超えるとエラーになること() {
     // when then
     assertEquals(
         "プレイヤー名が30桁を超えている 1234567890123456789012345678901",

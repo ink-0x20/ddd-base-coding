@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class SongNameTest {
 
   @Test
-  void nullを渡すと例外になること() {
+  void nullを渡すとエラーになること() {
     // when then
     assertEquals(
         "楽曲名が空",
@@ -17,7 +17,7 @@ class SongNameTest {
   }
 
   @Test
-  void 空白を渡すと例外になること() {
+  void 空白を渡すとエラーになること() {
     // when then
     assertEquals(
         "楽曲名が空",
@@ -34,7 +34,7 @@ class SongNameTest {
   }
 
   @Test
-  void 値が50桁を超えると例外になること() {
+  void 値が50桁を超えるとエラーになること() {
     // when then
     assertEquals(
         "楽曲名が50桁を超えている 123456789012345678901234567890123456789012345678901",

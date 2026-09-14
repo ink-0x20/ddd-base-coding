@@ -8,7 +8,7 @@ public record AuthenticationExpiration(long attempt, long expiration) {
 
   public AuthenticationExpiration {
     if (attempt < 1) {
-      throw new DomainException("認証日時の形式が不正");
+      throw new DomainException("認証試行日時の形式が不正");
     }
     if (expiration < 1) {
       throw new DomainException("認証有効期限の形式が不正");
@@ -16,7 +16,11 @@ public record AuthenticationExpiration(long attempt, long expiration) {
   }
 
   public static AuthenticationExpiration until4AMTheNextTime() {
-    ZonedDateTime now =ZonedDateTime.now(ZoneId.systemDefault());
+    return until4AMTheNextTime(Clock.systemDefaultZone());
+  }
+
+  public static AuthenticationExpiration until4AMTheNextTime(Clock clock) {
+    ZonedDateTime now =ZonedDateTime.now(clock);
     ZonedDateTime next4AM = now.with(LocalTime.of(4, 0, 0, 0));
     if (!now.isBefore(next4AM)) {
       next4AM = next4AM.plusDays(1);

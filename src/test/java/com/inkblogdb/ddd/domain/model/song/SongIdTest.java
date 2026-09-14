@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class SongIdTest {
 
   @Test
-  void nullを渡すと例外になること() {
+  void nullを渡すとエラーになること() {
     // when then
     assertEquals(
         "楽曲IDが空",
@@ -17,7 +17,7 @@ class SongIdTest {
   }
 
   @Test
-  void 空白を渡すと例外になること() {
+  void 空白を渡すとエラーになること() {
     // when then
     assertEquals(
         "楽曲IDが空",
@@ -34,7 +34,7 @@ class SongIdTest {
   }
 
   @Test
-  void 値が8桁でないと例外になること() {
+  void 値が8桁でないとエラーになること() {
     // when then
     assertEquals(
         "楽曲IDの形式が不正 2345678",
@@ -47,7 +47,7 @@ class SongIdTest {
   }
 
   @Test
-  void 読みにくい文字列を渡すと例外になること() {
+  void 読みにくい文字列を渡すとエラーになること() {
     // when then
     assertEquals(
         "楽曲IDの形式が不正 1l1l1l1l",

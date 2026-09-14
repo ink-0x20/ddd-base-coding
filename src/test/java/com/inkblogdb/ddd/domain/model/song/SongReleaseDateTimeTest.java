@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class SongReleaseDateTimeTest {
 
   @Test
-  void nullを渡すと例外になること() {
+  void nullを渡すとエラーになること() {
     // when then
     assertEquals(
         "楽曲公開日時が空",

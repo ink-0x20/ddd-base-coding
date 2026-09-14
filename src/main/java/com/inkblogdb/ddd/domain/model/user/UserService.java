@@ -12,10 +12,11 @@ import java.util.stream.Stream;
 public class UserService {
 
   private final UserRepository userRepository;
+  private static final int MAX_RETRY = 10;
 
   public void addUser(UserId userId) {
     PlayerId playerId = Stream.generate(PlayerId::generate)
-        .limit(10)
+        .limit(MAX_RETRY)
         .filter(id -> userRepository.existsByPlayerId(id).isNotExists())
         .findFirst()
         .orElseThrow(() -> new DomainException("プレイヤーIDの生成に失敗"));

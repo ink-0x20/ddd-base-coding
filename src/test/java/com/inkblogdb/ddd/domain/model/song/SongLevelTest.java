@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class SongLevelTest {
 
   @Test
-  void 値が0の場合例外になること() {
+  void 値が0の場合エラーになること() {
     // when then
     assertEquals(
         "楽曲レベルの形式が不正",
@@ -17,7 +17,7 @@ class SongLevelTest {
   }
 
   @Test
-  void 値が負の整数の場合例外になること() {
+  void 値が負の整数の場合エラーになること() {
     // when then
     assertEquals(
         "楽曲レベルの形式が不正",
@@ -26,7 +26,7 @@ class SongLevelTest {
   }
 
   @Test
-  void 値が正の整数の場合例外になること() {
+  void 値が正の整数の場合エラーになること() {
     // given
     int level = 1;
 

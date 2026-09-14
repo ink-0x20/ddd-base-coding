@@ -1,4 +1,4 @@
-package com.inkblogdb.ddd.infrastructure.database;
+package com.inkblogdb.ddd.infrastructure.database.handler;
 
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;

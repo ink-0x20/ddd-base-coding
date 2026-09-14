@@ -15,7 +15,7 @@ public class GetPlayerUseCase {
   private final PlayerRepository playerRepository;
 
   public PlayerDTO getPlayer(PlayerId playerId) throws PlayerNotFoundException {
-    if (playerRepository.notExists(playerId)) {
+    if (playerRepository.exists(playerId).isNotExists()) {
       throw new PlayerNotFoundException("プレイヤーが存在しない");
     }
     Player player = playerRepository.findById(playerId);

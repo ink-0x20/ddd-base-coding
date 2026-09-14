@@ -1,8 +1,10 @@
 package com.inkblogdb.ddd.infrastructure.database.player;
 
+import com.inkblogdb.ddd.domain.type.Exists;
+
 public interface PlayerMapper {
 
-  boolean exists(String id);
+  Exists exists(String id);
 
   PlayerRecordEntity findById(String id);
 

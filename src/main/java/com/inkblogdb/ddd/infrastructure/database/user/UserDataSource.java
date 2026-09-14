@@ -4,6 +4,7 @@ import com.inkblogdb.ddd.domain.model.user.User;
 import com.inkblogdb.ddd.domain.model.user.UserRepository;
 import com.inkblogdb.ddd.domain.model.user.UserId;
 import com.inkblogdb.ddd.domain.model.player.PlayerId;
+import com.inkblogdb.ddd.domain.type.Exists;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -14,18 +15,13 @@ public class UserDataSource implements UserRepository {
   private final UserMapper userMapper;
 
   @Override
-  public boolean existsByUserId(UserId userId) {
+  public Exists existsByUserId(UserId userId) {
     return userMapper.existsByUserId(userId.value());
   }
 
   @Override
-  public boolean notExistsByUserId(UserId userId) {
-    return !existsByUserId(userId);
-  }
-
-  @Override
-  public boolean notExistsByPlayerId(PlayerId playerId) {
-    return !userMapper.existsByPlayerId(playerId.value());
+  public Exists existsByPlayerId(PlayerId playerId) {
+    return userMapper.existsByPlayerId(playerId.value());
   }
 
   @Override

@@ -5,6 +5,7 @@ import com.inkblogdb.ddd.application.usecase.abort.ExistsPlayerException;
 import com.inkblogdb.ddd.domain.model.player.PlayerId;
 import com.inkblogdb.ddd.domain.model.player.PlayerRepository;
 import com.inkblogdb.ddd.domain.model.player.PlayerService;
+import com.inkblogdb.ddd.domain.type.Exists;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -35,7 +36,7 @@ class AddPlayerUseCaseTest {
           PlayerId.generate().value(),
           "テストプレイヤー名"
       );
-      when(playerRepository.exists(any())).thenReturn(false);
+      when(playerRepository.exists(any())).thenReturn(Exists.NOT_EXISTS);
 
       // when
       addPlayerUseCase.addPlayer(addPlayerCommand);

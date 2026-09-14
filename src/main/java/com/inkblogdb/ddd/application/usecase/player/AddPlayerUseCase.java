@@ -19,7 +19,7 @@ public class AddPlayerUseCase {
   public void addPlayer(AddPlayerCommand addPlayerCommand) throws ExistsPlayerException {
     PlayerId playerId = new PlayerId(addPlayerCommand.id());
     PlayerName playerName = new PlayerName(addPlayerCommand.name());
-    if (playerRepository.exists(playerId)) {
+    if (playerRepository.exists(playerId).isExists()) {
       throw new ExistsPlayerException("プレイヤーが重複");
     }
     playerService.addPlayer(playerId, playerName);

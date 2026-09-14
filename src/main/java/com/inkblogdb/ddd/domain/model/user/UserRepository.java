@@ -1,14 +1,13 @@
 package com.inkblogdb.ddd.domain.model.user;
 
 import com.inkblogdb.ddd.domain.model.player.PlayerId;
+import com.inkblogdb.ddd.domain.type.Exists;
 
 public interface UserRepository {
 
-  boolean existsByUserId(UserId userId);
+  Exists existsByUserId(UserId userId);
 
-  boolean notExistsByUserId(UserId userId);
-
-  boolean notExistsByPlayerId(PlayerId playerId);
+  Exists existsByPlayerId(PlayerId playerId);
 
   User findById(UserId userId);
 

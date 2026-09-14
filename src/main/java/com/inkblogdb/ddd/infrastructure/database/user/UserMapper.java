@@ -1,12 +1,14 @@
 package com.inkblogdb.ddd.infrastructure.database.user;
 
+import com.inkblogdb.ddd.domain.type.Exists;
+
 import java.util.UUID;
 
 public interface UserMapper {
 
-  boolean existsByUserId(UUID id);
+  Exists existsByUserId(UUID id);
 
-  boolean existsByPlayerId(String playerId);
+  Exists existsByPlayerId(String playerId);
 
   UserRecordEntity findById(UUID id);
 

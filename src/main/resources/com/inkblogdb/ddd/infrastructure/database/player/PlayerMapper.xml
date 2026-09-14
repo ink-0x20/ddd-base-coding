@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.inkblogdb.ddd.infrastructure.database.player.PlayerMapper">
 
-    <select id="exists" resultType="boolean">
+    <select id="exists" resultType="com.inkblogdb.ddd.domain.type.Exists">
         SELECT EXISTS (
             SELECT 1
             FROM t_players

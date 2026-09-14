@@ -20,7 +20,7 @@ public class LoginUseCase {
 
   public AuthenticationDTO login(UserCommand userCommand) throws UserNotFoundException {
     UserId userId = new UserId(userCommand.userId());
-    if (userRepository.notExistsByUserId(userId)) {
+    if (userRepository.existsByUserId(userId).isNotExists()) {
       throw new UserNotFoundException("ユーザーが存在しない");
     }
     // ユーザーを検索

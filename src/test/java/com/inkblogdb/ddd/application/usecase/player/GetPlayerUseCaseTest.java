@@ -6,6 +6,7 @@ import com.inkblogdb.ddd.domain.model.player.Player;
 import com.inkblogdb.ddd.domain.model.player.PlayerId;
 import com.inkblogdb.ddd.domain.model.player.PlayerName;
 import com.inkblogdb.ddd.domain.model.player.PlayerRepository;
+import com.inkblogdb.ddd.domain.type.Exists;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -31,6 +32,7 @@ class GetPlayerUseCaseTest {
         playerId,
         new PlayerName("テストプレイヤー名")
     );
+    when(playerRepository.exists(playerId)).thenReturn(Exists.EXISTS);
     when(playerRepository.findById(playerId)).thenReturn(player);
 
     // when

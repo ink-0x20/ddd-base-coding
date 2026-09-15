@@ -1,6 +1,6 @@
 package com.inkblogdb.ddd.presentation.api.v1.user;
 
-import com.inkblogdb.ddd.application.command.user.UserCommand;
+import com.inkblogdb.ddd.application.usecase.user.AddUserCommand;
 import com.inkblogdb.ddd.application.usecase.abort.ExistsUserException;
 import com.inkblogdb.ddd.application.usecase.user.AddUserUseCase;
 import jakarta.validation.Valid;
@@ -19,7 +19,7 @@ public class UserController {
   @ResponseStatus(HttpStatus.CREATED)
   public void signup(@Valid @RequestBody UserRequest userRequest) throws ExistsUserException {
     addUserUseCase.addUser(
-        new UserCommand(userRequest.userId())
+        new AddUserCommand(userRequest.userId())
     );
   }
 

@@ -1,6 +1,5 @@
 package com.inkblogdb.ddd.application.usecase.player;
 
-import com.inkblogdb.ddd.application.command.player.AddPlayerCommand;
 import com.inkblogdb.ddd.application.usecase.abort.ExistsPlayerException;
 import com.inkblogdb.ddd.domain.model.player.PlayerId;
 import com.inkblogdb.ddd.domain.model.player.PlayerName;

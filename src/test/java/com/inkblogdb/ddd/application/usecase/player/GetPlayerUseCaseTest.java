@@ -14,6 +14,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -28,19 +30,38 @@ class GetPlayerUseCaseTest {
   void プレイヤーを取得できること() throws PlayerNotFoundException {
     // given
     PlayerId playerId = PlayerId.generate();
+    GetPlayerCommand getPlayerCommand = new GetPlayerCommand(
+        playerId.value()
+    );
     Player player = new Player(
         playerId,
         new PlayerName("テストプレイヤー名")
     );
-    when(playerRepository.exists(playerId)).thenReturn(Exists.EXISTS);
-    when(playerRepository.findById(playerId)).thenReturn(player);
+    when(playerRepository.exists(any())).thenReturn(Exists.EXISTS);
+    when(playerRepository.findById(any())).thenReturn(player);
 
     // when
-    PlayerDTO result = getPlayerUseCase.getPlayer(playerId);
+    PlayerDTO result = getPlayerUseCase.getPlayer(getPlayerCommand);
 
     // then
     assertEquals(playerId.value(), result.id());
     assertEquals(player.playerName().value(), result.name());
+  }
+
+  @Test
+  void 存在しない場合エラーになること() {
+    // given
+    PlayerId playerId = PlayerId.generate();
+    GetPlayerCommand getPlayerCommand = new GetPlayerCommand(
+        playerId.value()
+    );
+    when(playerRepository.exists(any())).thenReturn(Exists.NOT_EXISTS);
+
+    // when then
+    assertEquals(
+        "プレイヤーが存在しない",
+        assertThrows(PlayerNotFoundException.class, () -> getPlayerUseCase.getPlayer(getPlayerCommand)).getMessage()
+    );
   }
 
 }

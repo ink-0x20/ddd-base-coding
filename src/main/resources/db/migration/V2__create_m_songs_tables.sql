@@ -7,13 +7,3 @@ CREATE TABLE IF NOT EXISTS m_songs (
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新日時',
     PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='楽曲';
-
-INSERT INTO m_songs (
-    id,
-    name,
-    level
-) VALUES (
-    'zzzzzzzz',
-    'テスト楽曲',
-    1
-);

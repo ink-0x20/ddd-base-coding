@@ -4,5 +4,5 @@ CREATE TABLE IF NOT EXISTS t_users (
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '作成日時',
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新日時',
     PRIMARY KEY (id),
-    UNIQUE KEY unique_player_id (player_id)
+    UNIQUE KEY uk_t_users_player_id (player_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='ユーザー';

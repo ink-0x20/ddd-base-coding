@@ -80,6 +80,16 @@ public class ErrorResponseHandler extends ResponseEntityExceptionHandler {
         HttpHeaders.EMPTY,
         HttpStatus.BAD_REQUEST);
   }
+
+  /**
+   * Spring ValidateによるAPIリクエストの属性チェック不正時の例外処理
+   * 各項目ごとの属性チェックや項目間の相関チェック
+   * @param exception 発生例外
+   * @param headers HTTPヘッダー
+   * @param status HTTPステータスコード
+   * @param request リクエスト
+   * @return Bad Request
+   */
   @Override
   protected ResponseEntity<Object> handleMethodArgumentNotValid(
       MethodArgumentNotValidException exception,

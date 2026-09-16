@@ -19,7 +19,9 @@ public class SongDomainFactory {
                 new SongId(entity.id()),
                 new SongName(entity.name()),
                 new SongLevel(entity.level()),
-                new SongReleaseDateTime(entity.publishAt())
+                new SongReleaseDateTime(entity.publishAt()),
+                SongUnlockStatus.createFrom(entity.unlockStatus()),
+                new SongUnlockedDateTime(entity.unlockedAt())
             )
         )
         .toList());

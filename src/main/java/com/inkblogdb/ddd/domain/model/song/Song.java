@@ -4,6 +4,8 @@ public record Song(
     SongId songId,
     SongName songName,
     SongLevel songLevel,
-    SongReleaseDateTime songReleaseDateTime) {
+    SongReleaseDateTime songReleaseDateTime,
+    SongUnlockStatus songUnlockStatus,
+    SongUnlockedDateTime songUnlockedDateTime) {
 
 }

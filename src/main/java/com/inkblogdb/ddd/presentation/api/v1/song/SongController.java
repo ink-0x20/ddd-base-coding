@@ -23,14 +23,16 @@ public class SongController {
   @GetMapping()
   @ResponseStatus(HttpStatus.OK)
   public List<SongResponse> getSongs(@AuthenticationPrincipal PlayerId playerId) {
-    List<SongDTO> songs = getSongsUseCase.getSongs();
+    List<SongDTO> songs = getSongsUseCase.getSongs(playerId);
     return songs
         .stream()
         .map(song -> new SongResponse(
             song.id(),
             song.name(),
             song.level(),
-            song.releaseDateTime()
+            song.releaseDateTime(),
+            song.unlockStatus(),
+            song.unlockedAt()
         ))
         .toList();
   }

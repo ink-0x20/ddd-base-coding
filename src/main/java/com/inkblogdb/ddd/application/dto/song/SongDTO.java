@@ -6,6 +6,9 @@ public record SongDTO(
     String id,
     String name,
     int level,
-    LocalDateTime releaseDateTime) {
+    LocalDateTime releaseDateTime,
+    int unlockStatus,
+    LocalDateTime unlockedAt
+) {
 
 }

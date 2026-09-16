@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface SongMapper {
 
-  List<SongRecordEntity> findAll();
+  List<SongRecordEntity> findAll(String playerId);
 
 }

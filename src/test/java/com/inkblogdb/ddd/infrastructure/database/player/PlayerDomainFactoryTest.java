@@ -1,5 +1,6 @@
 package com.inkblogdb.ddd.infrastructure.database.player;
 
+import com.inkblogdb.ddd.domain.model.song.SongUnlockStatus;
 import com.inkblogdb.ddd.domain.model.song.Songs;
 import com.inkblogdb.ddd.infrastructure.InfrastructureException;
 import com.inkblogdb.ddd.infrastructure.database.song.SongDomainFactory;
@@ -31,6 +32,8 @@ class PlayerDomainFactoryTest {
               "zzzzzzzz",
               "テスト楽曲",
               5,
+              LocalDateTime.now(),
+              SongUnlockStatus.UNLOCKED.value(),
               LocalDateTime.now()
           )
       );
@@ -45,6 +48,8 @@ class PlayerDomainFactoryTest {
       assertEquals("テスト楽曲", result.songs().stream().findFirst().get().songName().value());
       assertEquals(5, result.songs().stream().findFirst().get().songLevel().value());
       assertNotNull(result.songs().stream().findFirst().get().songReleaseDateTime().value());
+      assertEquals(SongUnlockStatus.UNLOCKED.value(), result.songs().stream().findFirst().get().songUnlockStatus().value());
+      assertNotNull(result.songs().stream().findFirst().get().songUnlockedDateTime().value());
     }
 
     @Test

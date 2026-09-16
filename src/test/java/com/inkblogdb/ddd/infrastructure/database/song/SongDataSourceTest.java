@@ -1,5 +1,6 @@
 package com.inkblogdb.ddd.infrastructure.database.song;
 
+import com.inkblogdb.ddd.domain.model.player.PlayerId;
 import com.inkblogdb.ddd.domain.model.song.*;
 import com.inkblogdb.ddd.infrastructure.InfrastructureException;
 import org.junit.jupiter.api.Nested;
@@ -31,18 +32,21 @@ class SongDataSourceTest {
     @Test
     void 値が取得できること() {
       // given
+      PlayerId playerId = PlayerId.generate();
       Songs songs = new Songs(List.of(
           new Song(
               new SongId("zzzzzzzz"),
               new SongName("テスト楽曲"),
               new SongLevel(5),
-              new SongReleaseDateTime(LocalDateTime.now())
+              new SongReleaseDateTime(LocalDateTime.now()),
+              SongUnlockStatus.UNLOCKED,
+              new SongUnlockedDateTime(LocalDateTime.now())
           )
       ));
       when(songDomainFactory.createFrom(any())).thenReturn(songs);
 
       // when
-      Songs result = songDataSource.findAll();
+      Songs result = songDataSource.findAll(playerId);
 
       // then
       assertNotNull(result);
@@ -52,15 +56,18 @@ class SongDataSourceTest {
       assertEquals("テスト楽曲", result.songs().stream().findFirst().get().songName().value());
       assertEquals(5, result.songs().stream().findFirst().get().songLevel().value());
       assertNotNull(result.songs().stream().findFirst().get().songReleaseDateTime().value());
+      assertEquals(SongUnlockStatus.UNLOCKED.value(), result.songs().stream().findFirst().get().songUnlockStatus().value());
+      assertNotNull(result.songs().stream().findFirst().get().songUnlockedDateTime().value());
     }
 
     @Test
     void 存在しない場合エラーになること() {
       // given
+      PlayerId playerId = PlayerId.generate();
       when(songDomainFactory.createFrom(any())).thenThrow(InfrastructureException.class);
 
       // when then
-      assertThrows(InfrastructureException.class, () -> songDataSource.findAll());
+      assertThrows(InfrastructureException.class, () -> songDataSource.findAll(playerId));
     }
   }
 

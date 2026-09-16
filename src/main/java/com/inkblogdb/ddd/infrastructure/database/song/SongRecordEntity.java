@@ -6,6 +6,9 @@ public record SongRecordEntity(
     String id,
     String name,
     int level,
-    LocalDateTime publishAt) {
+    LocalDateTime publishAt,
+    int unlockStatus,
+    LocalDateTime unlockedAt
+) {
 
 }

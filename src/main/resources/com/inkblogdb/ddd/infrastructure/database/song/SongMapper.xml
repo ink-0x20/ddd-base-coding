@@ -6,12 +6,22 @@
 
     <select id="findAll" resultType="com.inkblogdb.ddd.infrastructure.database.song.SongRecordEntity">
         SELECT
-            id,
-            name,
-            level,
-            publish_at
+            m.id,
+            m.name,
+            m.level,
+            m.publish_at,
+            t.unlock_status,
+            t.unlocked_at
         FROM
-            m_songs
+            t_player_songs t
+        INNER JOIN
+            m_songs m
+        ON
+            t.song_id = m.id
+        WHERE
+            t.player_id = #{playerId}
+        ORDER BY
+            m.publish_at ASC
     </select>
 
 </mapper>

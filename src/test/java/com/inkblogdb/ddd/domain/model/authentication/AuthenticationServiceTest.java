@@ -19,7 +19,7 @@ class AuthenticationServiceTest {
   private AuthenticationRepository authenticationRepository;
 
   @Test
-  void ログインできること() {
+  void loginが実行されること() {
     // given
     PlayerId playerId = PlayerId.generate();
 

@@ -13,8 +13,7 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class UserServiceTest {
@@ -25,7 +24,7 @@ class UserServiceTest {
   private UserRepository userRepository;
 
   @Test
-  void 追加できること() {
+  void addUserが実行されること() {
     // given
     UserId userId = new UserId(UUID.randomUUID().toString());
     when(userRepository.existsByPlayerId(any())).thenReturn(Exists.NOT_EXISTS);
@@ -58,10 +57,11 @@ class UserServiceTest {
 
     // then
     verify(userRepository).addUser(any(), any());
+    verify(userRepository, times(10)).existsByPlayerId(any());
   }
 
   @Test
-  void 試行回数11回目でエラーになること() {
+  void 試行回数11回目にならずにエラーになること() {
     // given
     UserId userId = new UserId(UUID.randomUUID().toString());
     when(userRepository.existsByPlayerId(any()))
@@ -74,14 +74,14 @@ class UserServiceTest {
         .thenReturn(Exists.EXISTS)
         .thenReturn(Exists.EXISTS)
         .thenReturn(Exists.EXISTS)
-        .thenReturn(Exists.EXISTS)
-        .thenReturn(Exists.NOT_EXISTS);
+        .thenReturn(Exists.EXISTS);
 
     // when then
     assertEquals(
         "プレイヤーIDの生成に失敗",
         assertThrows(DomainException.class, () -> userService.addUser(userId)).getMessage()
     );
+    verify(userRepository, times(10)).existsByPlayerId(any());
   }
 
 }

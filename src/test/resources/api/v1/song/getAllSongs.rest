@@ -1,13 +1,5 @@
 @userId = e7e01f93-cd35-41ad-aaa6-60db9c3ad7b1
 
-### サインアップ
-POST http://localhost:8080/api/v1/users/signup
-Content-Type:  application/json
-
-{
-  "userId": "{{userId}}"
-}
-
 ### ログイン
 POST http://localhost:8080/api/v1/auth/login
 Content-Type:  application/json

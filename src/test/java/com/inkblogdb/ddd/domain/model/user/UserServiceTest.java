@@ -61,7 +61,7 @@ class UserServiceTest {
   }
 
   @Test
-  void 試行回数11回目にならずにエラーになること() {
+  void 試行回数10回で作成できない場合エラーになること() {
     // given
     UserId userId = new UserId(UUID.randomUUID().toString());
     when(userRepository.existsByPlayerId(any()))

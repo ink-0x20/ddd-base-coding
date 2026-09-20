@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface SongQueryService {
 
-  List<SongDTO> findAll(PlayerId playerId);
+  List<GetSongModel> findAll(PlayerId playerId);
 
 }

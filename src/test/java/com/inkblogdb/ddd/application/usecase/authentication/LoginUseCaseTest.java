@@ -1,6 +1,5 @@
 package com.inkblogdb.ddd.application.usecase.authentication;
 
-import com.inkblogdb.ddd.application.dto.authentication.AuthenticationDTO;
 import com.inkblogdb.ddd.application.usecase.abort.UserNotFoundException;
 import com.inkblogdb.ddd.application.usecase.user.AddUserCommand;
 import com.inkblogdb.ddd.domain.model.authentication.Authentication;
@@ -55,7 +54,7 @@ class LoginUseCaseTest {
     when(authenticationService.login(any())).thenReturn(authentication);
 
     // when
-    AuthenticationDTO result = loginUseCase.login(addUserCommand);
+    LoginModel result = loginUseCase.login(addUserCommand);
 
     // then
     assertEquals(playerId.value(), result.playerId());

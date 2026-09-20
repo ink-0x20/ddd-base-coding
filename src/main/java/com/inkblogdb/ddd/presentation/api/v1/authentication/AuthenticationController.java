@@ -1,7 +1,7 @@
 package com.inkblogdb.ddd.presentation.api.v1.authentication;
 
 import com.inkblogdb.ddd.application.usecase.user.AddUserCommand;
-import com.inkblogdb.ddd.application.dto.authentication.AuthenticationDTO;
+import com.inkblogdb.ddd.application.usecase.authentication.LoginModel;
 import com.inkblogdb.ddd.application.usecase.abort.UserNotFoundException;
 import com.inkblogdb.ddd.application.usecase.authentication.LoginUseCase;
 import jakarta.validation.Valid;
@@ -19,12 +19,12 @@ public class AuthenticationController {
   @PostMapping("/login")
   @ResponseStatus(HttpStatus.CREATED)
   public AuthenticationResponse login(@Valid @RequestBody AuthenticationRequest authenticationRequest) throws UserNotFoundException {
-    AuthenticationDTO authenticationDTO = loginUseCase.login(
+    LoginModel loginModel = loginUseCase.login(
         new AddUserCommand(authenticationRequest.userId())
     );
     return new AuthenticationResponse(
-        authenticationDTO.token(),
-        authenticationDTO.playerId()
+        loginModel.token(),
+        loginModel.playerId()
     );
   }
 

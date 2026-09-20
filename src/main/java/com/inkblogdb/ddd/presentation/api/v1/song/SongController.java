@@ -1,6 +1,6 @@
 package com.inkblogdb.ddd.presentation.api.v1.song;
 
-import com.inkblogdb.ddd.application.query.song.SongDTO;
+import com.inkblogdb.ddd.application.query.song.GetSongModel;
 import com.inkblogdb.ddd.application.query.song.SongQueryService;
 import com.inkblogdb.ddd.domain.model.player.PlayerId;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +23,7 @@ public class SongController {
   @GetMapping()
   @ResponseStatus(HttpStatus.OK)
   public List<SongResponse> getSongs(@AuthenticationPrincipal PlayerId playerId) {
-    List<SongDTO> songs = songQueryService.findAll(playerId);
+    List<GetSongModel> songs = songQueryService.findAll(playerId);
     return songs
         .stream()
         .map(song -> new SongResponse(

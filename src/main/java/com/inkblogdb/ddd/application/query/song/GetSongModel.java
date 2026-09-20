@@ -2,7 +2,7 @@ package com.inkblogdb.ddd.application.query.song;
 
 import java.time.LocalDateTime;
 
-public record SongDTO(
+public record GetSongModel(
     String id,
     String name,
     int level,

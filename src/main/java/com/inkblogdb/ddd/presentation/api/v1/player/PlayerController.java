@@ -1,6 +1,6 @@
 package com.inkblogdb.ddd.presentation.api.v1.player;
 
-import com.inkblogdb.ddd.application.dto.player.PlayerDTO;
+import com.inkblogdb.ddd.application.usecase.player.GetPlayerModel;
 import com.inkblogdb.ddd.application.usecase.abort.ExistsPlayerException;
 import com.inkblogdb.ddd.application.usecase.abort.PlayerNotFoundException;
 import com.inkblogdb.ddd.application.usecase.player.AddPlayerCommand;
@@ -26,8 +26,8 @@ public class PlayerController {
     GetPlayerCommand getPlayerCommand = new GetPlayerCommand(
         playerId
     );
-    PlayerDTO playerDTO = getPlayerUseCase.getPlayer(getPlayerCommand);
-    return new PlayerResponse(playerDTO.id(), playerDTO.name());
+    GetPlayerModel getPlayerModel = getPlayerUseCase.getPlayer(getPlayerCommand);
+    return new PlayerResponse(getPlayerModel.id(), getPlayerModel.name());
   }
 
   @PostMapping("/{playerId}")

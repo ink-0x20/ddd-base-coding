@@ -1,9 +1,8 @@
 package com.inkblogdb.ddd.infrastructure.database.query.song;
 
-import com.inkblogdb.ddd.application.query.song.SongDTO;
+import com.inkblogdb.ddd.application.query.song.GetSongModel;
 import com.inkblogdb.ddd.application.query.song.SongQueryService;
 import com.inkblogdb.ddd.domain.model.player.PlayerId;
-import com.inkblogdb.ddd.domain.model.song.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -15,10 +14,10 @@ public class SongQueryServiceImpl implements SongQueryService {
 
   private final SongQueryMapper songQueryMapper;
 
-  public List<SongDTO> findAll(PlayerId playerId) {
+  public List<GetSongModel> findAll(PlayerId playerId) {
     return songQueryMapper.findAll(playerId.value())
         .stream()
-        .map(entity -> new SongDTO(
+        .map(entity -> new GetSongModel(
                 entity.id(),
                 entity.name(),
                 entity.level(),

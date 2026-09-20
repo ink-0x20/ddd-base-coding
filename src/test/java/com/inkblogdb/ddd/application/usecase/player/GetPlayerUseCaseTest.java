@@ -1,6 +1,5 @@
 package com.inkblogdb.ddd.application.usecase.player;
 
-import com.inkblogdb.ddd.application.dto.player.PlayerDTO;
 import com.inkblogdb.ddd.application.usecase.abort.PlayerNotFoundException;
 import com.inkblogdb.ddd.domain.model.player.Player;
 import com.inkblogdb.ddd.domain.model.player.PlayerId;
@@ -41,7 +40,7 @@ class GetPlayerUseCaseTest {
     when(playerRepository.findById(any())).thenReturn(player);
 
     // when
-    PlayerDTO result = getPlayerUseCase.getPlayer(getPlayerCommand);
+    GetPlayerModel result = getPlayerUseCase.getPlayer(getPlayerCommand);
 
     // then
     assertEquals(playerId.value(), result.id());

@@ -1,8 +1,8 @@
-package com.inkblogdb.ddd.infrastructure.database.song;
+package com.inkblogdb.ddd.infrastructure.database.query.song;
 
 import java.time.LocalDateTime;
 
-public record SongRecordEntity(
+public record SongQueryRecordEntity(
     String id,
     String name,
     int level,

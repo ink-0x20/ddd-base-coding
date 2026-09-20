@@ -1,4 +1,4 @@
-package com.inkblogdb.ddd.application.dto.song;
+package com.inkblogdb.ddd.application.query.song;
 
 import java.time.LocalDateTime;
 

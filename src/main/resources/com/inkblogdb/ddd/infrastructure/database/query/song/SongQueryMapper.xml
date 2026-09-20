@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.inkblogdb.ddd.infrastructure.database.song.SongMapper">
+<mapper namespace="com.inkblogdb.ddd.infrastructure.database.query.song.SongQueryMapper">
 
-    <select id="findAll" resultType="com.inkblogdb.ddd.infrastructure.database.song.SongRecordEntity">
+    <select id="findAll" resultType="com.inkblogdb.ddd.infrastructure.database.query.song.SongQueryRecordEntity">
         SELECT
             m.id,
             m.name,

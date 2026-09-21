@@ -14,6 +14,7 @@ public class SongQueryServiceImpl implements SongQueryService {
 
   private final SongQueryMapper songQueryMapper;
 
+  @Override
   public List<GetSongModel> findAll(PlayerId playerId) {
     return songQueryMapper.findAll(playerId.value())
         .stream()

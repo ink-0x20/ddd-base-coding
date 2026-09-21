@@ -1,4 +1,4 @@
-package com.inkblogdb.ddd.domain.model.song.player;
+package com.inkblogdb.ddd.domain.model.player.song;
 
 import com.inkblogdb.ddd.domain.type.DateTime;
 

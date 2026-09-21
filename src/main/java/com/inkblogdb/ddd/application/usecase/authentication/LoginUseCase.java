@@ -9,6 +9,8 @@ import com.inkblogdb.ddd.domain.model.user.UserId;
 import com.inkblogdb.ddd.domain.model.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 @Component
 @RequiredArgsConstructor
@@ -17,6 +19,7 @@ public class LoginUseCase {
   private final UserRepository userRepository;
   private final AuthenticationService authenticationService;
 
+  @Transactional(isolation = Isolation.READ_COMMITTED)
   public LoginModel login(AddUserCommand addUserCommand) throws UserNotFoundException {
     UserId userId = new UserId(addUserCommand.userId());
     if (userRepository.existsByUserId(userId).no()) {

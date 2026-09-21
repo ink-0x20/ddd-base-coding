@@ -6,6 +6,8 @@ import com.inkblogdb.ddd.domain.model.player.PlayerName;
 import com.inkblogdb.ddd.domain.model.player.PlayerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 @Component
 @RequiredArgsConstructor
@@ -13,6 +15,7 @@ public class AddPlayerUseCase {
 
   private final PlayerRepository playerRepository;
 
+  @Transactional(isolation = Isolation.READ_COMMITTED)
   public void addPlayer(AddPlayerCommand addPlayerCommand) throws ExistsPlayerException {
     PlayerId playerId = new PlayerId(addPlayerCommand.id());
     PlayerName playerName = new PlayerName(addPlayerCommand.name());

@@ -1,9 +1,11 @@
-package com.inkblogdb.ddd.infrastructure.database.user;
+package com.inkblogdb.ddd.infrastructure.database.command.user;
 
 import com.inkblogdb.ddd.domain.model.player.PlayerId;
 import com.inkblogdb.ddd.domain.model.user.User;
 import com.inkblogdb.ddd.domain.model.user.UserId;
 import com.inkblogdb.ddd.infrastructure.InfrastructureException;
+import com.inkblogdb.ddd.infrastructure.database.command.user.UserDomainFactory;
+import com.inkblogdb.ddd.infrastructure.database.command.user.UserRecordEntity;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

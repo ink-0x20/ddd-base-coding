@@ -1,4 +1,4 @@
-package com.inkblogdb.ddd.infrastructure.database.user;
+package com.inkblogdb.ddd.infrastructure.database.command.user;
 
 import com.inkblogdb.ddd.domain.model.player.PlayerId;
 import com.inkblogdb.ddd.domain.model.user.User;

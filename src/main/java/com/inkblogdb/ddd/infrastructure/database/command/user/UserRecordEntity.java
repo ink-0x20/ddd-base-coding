@@ -1,4 +1,4 @@
-package com.inkblogdb.ddd.infrastructure.database.user;
+package com.inkblogdb.ddd.infrastructure.database.command.user;
 
 import java.util.UUID;
 

@@ -209,8 +209,8 @@ CQRSに基づいたクエリ検索用のインターフェースとDTOを格納�
   - オブジェクトの生成を専門とするメソッドやクラスに任せる
   - レイヤー間のデータのやり取りの際、変換処理がややこしかったり量が多くなりがちなため、本来の処理を散らかさないようオブジェクト生成役に任せることで責務を分担させる
   - 実装例
-    - [src/main/java/com/inkblogdb/ddd/infrastructure/database/player/PlayerDomainFactory.java](src/main/java/com/inkblogdb/ddd/infrastructure/database/player/PlayerDomainFactory.java)
-    - [src/main/java/com/inkblogdb/ddd/infrastructure/database/player/PlayerDataSource.java](src/main/java/com/inkblogdb/ddd/infrastructure/database/player/PlayerDataSource.java)
+    - [src/main/java/com/inkblogdb/ddd/infrastructure/database/command/player/PlayerDomainFactory.java](src/main/java/com/inkblogdb/ddd/infrastructure/database/command/player/PlayerDomainFactory.java)
+    - [src/main/java/com/inkblogdb/ddd/infrastructure/database/command/player/PlayerDataSource.java](src/main/java/com/inkblogdb/ddd/infrastructure/database/command/player/PlayerDataSource.java)
 - Decorator（デコレーター）
   - 既存のオブジェクトをラッパークラスで覆うことで、元のコードを変更せずに機能を追加・拡張する
   - 分離することが難しい関心事や、複数のレイヤーにまたがる関心事を横断的関心事といい、具体的には下記のような内容が挙げられる

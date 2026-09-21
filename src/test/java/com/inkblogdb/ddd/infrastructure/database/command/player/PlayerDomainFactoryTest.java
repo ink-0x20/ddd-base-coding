@@ -1,4 +1,4 @@
-package com.inkblogdb.ddd.infrastructure.database.player;
+package com.inkblogdb.ddd.infrastructure.database.command.player;
 
 import com.inkblogdb.ddd.infrastructure.InfrastructureException;
 import org.junit.jupiter.api.Nested;

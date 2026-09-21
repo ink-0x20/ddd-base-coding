@@ -1,4 +1,4 @@
-package com.inkblogdb.ddd.domain.model.song;
+package com.inkblogdb.ddd.domain.model.song.player;
 
 import com.inkblogdb.ddd.domain.DomainException;
 

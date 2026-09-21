@@ -4,7 +4,7 @@ import com.inkblogdb.ddd.application.usecase.abort.ExistsUserException;
 import com.inkblogdb.ddd.domain.model.user.UserId;
 import com.inkblogdb.ddd.domain.model.user.UserRepository;
 import com.inkblogdb.ddd.domain.model.user.UserService;
-import com.inkblogdb.ddd.domain.type.Exists;
+import com.inkblogdb.ddd.domain.type.Existence;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -36,7 +36,7 @@ class AddUserUseCaseTest {
     AddUserCommand addUserCommand = new AddUserCommand(
         userId.toString()
     );
-    when(userRepository.existsByUserId(any())).thenReturn(Exists.NOT_EXISTS);
+    when(userRepository.existsByUserId(any())).thenReturn(Existence.NO);
 
     // when
     addUserUseCase.addUser(addUserCommand);
@@ -52,7 +52,7 @@ class AddUserUseCaseTest {
     AddUserCommand addUserCommand = new AddUserCommand(
         userId.toString()
     );
-    when(userRepository.existsByUserId(any())).thenReturn(Exists.EXISTS);
+    when(userRepository.existsByUserId(any())).thenReturn(Existence.YES);
 
     // when then
     assertEquals(

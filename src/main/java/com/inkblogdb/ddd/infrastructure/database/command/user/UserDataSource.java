@@ -4,7 +4,7 @@ import com.inkblogdb.ddd.domain.model.user.User;
 import com.inkblogdb.ddd.domain.model.user.UserRepository;
 import com.inkblogdb.ddd.domain.model.user.UserId;
 import com.inkblogdb.ddd.domain.model.player.PlayerId;
-import com.inkblogdb.ddd.domain.type.Exists;
+import com.inkblogdb.ddd.domain.type.Existence;
 import com.inkblogdb.ddd.infrastructure.InfrastructureException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -17,12 +17,12 @@ public class UserDataSource implements UserRepository {
   private final UserDomainFactory userDomainFactory;
 
   @Override
-  public Exists existsByUserId(UserId userId) {
+  public Existence existsByUserId(UserId userId) {
     return userMapper.existsByUserId(userId.value());
   }
 
   @Override
-  public Exists existsByPlayerId(PlayerId playerId) {
+  public Existence existsByPlayerId(PlayerId playerId) {
     return userMapper.existsByPlayerId(playerId.value());
   }
 

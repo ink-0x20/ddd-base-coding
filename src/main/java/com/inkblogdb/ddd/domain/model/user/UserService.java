@@ -17,7 +17,7 @@ public class UserService {
   public void addUser(UserId userId) {
     PlayerId playerId = Stream.generate(PlayerId::generate)
         .limit(MAX_RETRY)
-        .filter(id -> userRepository.existsByPlayerId(id).isNotExists())
+        .filter(id -> userRepository.existsByPlayerId(id).no())
         .findFirst()
         .orElseThrow(() -> new DomainException("プレイヤーIDの生成に失敗"));
     userRepository.addUser(userId, playerId);

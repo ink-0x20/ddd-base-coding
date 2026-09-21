@@ -19,7 +19,7 @@ public class LoginUseCase {
 
   public LoginModel login(AddUserCommand addUserCommand) throws UserNotFoundException {
     UserId userId = new UserId(addUserCommand.userId());
-    if (userRepository.existsByUserId(userId).isNotExists()) {
+    if (userRepository.existsByUserId(userId).no()) {
       throw new UserNotFoundException("ユーザーが存在しない");
     }
     // ユーザーを検索

@@ -3,7 +3,7 @@ package com.inkblogdb.ddd.application.usecase.player;
 import com.inkblogdb.ddd.application.usecase.abort.ExistsPlayerException;
 import com.inkblogdb.ddd.domain.model.player.PlayerId;
 import com.inkblogdb.ddd.domain.model.player.PlayerRepository;
-import com.inkblogdb.ddd.domain.type.Exists;
+import com.inkblogdb.ddd.domain.type.Existence;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -31,7 +31,7 @@ class AddPlayerUseCaseTest {
         PlayerId.generate().value(),
         "テストプレイヤー名"
     );
-    when(playerRepository.exists(any())).thenReturn(Exists.NOT_EXISTS);
+    when(playerRepository.exists(any())).thenReturn(Existence.NO);
 
     // when
     addPlayerUseCase.addPlayer(addPlayerCommand);
@@ -47,7 +47,7 @@ class AddPlayerUseCaseTest {
         PlayerId.generate().value(),
         "テストプレイヤー名"
     );
-    when(playerRepository.exists(any())).thenReturn(Exists.EXISTS);
+    when(playerRepository.exists(any())).thenReturn(Existence.YES);
 
     // when then
     assertEquals(

@@ -16,7 +16,7 @@ public class AddUserUseCase {
 
   public void addUser(AddUserCommand addUserCommand) throws ExistsUserException {
     UserId userId = new UserId(addUserCommand.userId());
-    if (userRepository.existsByUserId(userId).isExists()) {
+    if (userRepository.existsByUserId(userId).yes()) {
       throw new ExistsUserException("ユーザーが重複");
     }
     // ユーザーを追加

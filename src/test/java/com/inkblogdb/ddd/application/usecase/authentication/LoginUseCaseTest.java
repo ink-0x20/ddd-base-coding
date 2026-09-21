@@ -9,7 +9,7 @@ import com.inkblogdb.ddd.domain.model.player.PlayerId;
 import com.inkblogdb.ddd.domain.model.user.User;
 import com.inkblogdb.ddd.domain.model.user.UserId;
 import com.inkblogdb.ddd.domain.model.user.UserRepository;
-import com.inkblogdb.ddd.domain.type.Exists;
+import com.inkblogdb.ddd.domain.type.Existence;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -49,7 +49,7 @@ class LoginUseCaseTest {
         playerId,
         new AuthenticationToken("dummy_token")
     );
-    when(userRepository.existsByUserId(any())).thenReturn(Exists.EXISTS);
+    when(userRepository.existsByUserId(any())).thenReturn(Existence.YES);
     when(userRepository.findById(any())).thenReturn(user);
     when(authenticationService.login(any())).thenReturn(authentication);
 
@@ -68,7 +68,7 @@ class LoginUseCaseTest {
     AddUserCommand addUserCommand = new AddUserCommand(
         userId.toString()
     );
-    when(userRepository.existsByUserId(any())).thenReturn(Exists.NOT_EXISTS);
+    when(userRepository.existsByUserId(any())).thenReturn(Existence.NO);
 
     // when then
     assertEquals(

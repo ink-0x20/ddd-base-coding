@@ -3,11 +3,8 @@ package com.inkblogdb.ddd.infrastructure.database.command.user;
 import com.inkblogdb.ddd.domain.model.player.PlayerId;
 import com.inkblogdb.ddd.domain.model.user.User;
 import com.inkblogdb.ddd.domain.model.user.UserId;
-import com.inkblogdb.ddd.domain.type.Exists;
+import com.inkblogdb.ddd.domain.type.Existence;
 import com.inkblogdb.ddd.infrastructure.InfrastructureException;
-import com.inkblogdb.ddd.infrastructure.database.command.user.UserDataSource;
-import com.inkblogdb.ddd.infrastructure.database.command.user.UserDomainFactory;
-import com.inkblogdb.ddd.infrastructure.database.command.user.UserMapper;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -36,25 +33,25 @@ class UserDataSourceTest {
     @Test
     void 存在すること() {
       // given
-      when(userMapper.existsByUserId(any())).thenReturn(Exists.EXISTS);
+      when(userMapper.existsByUserId(any())).thenReturn(Existence.YES);
 
       // when
-      Exists result = userDataSource.existsByUserId(new UserId(UUID.randomUUID().toString()));
+      Existence result = userDataSource.existsByUserId(new UserId(UUID.randomUUID().toString()));
 
       // then
-      assertTrue(result.isExists());
+      assertTrue(result.yes());
     }
 
     @Test
     void 存在しないこと() {
       // given
-      when(userMapper.existsByUserId(any())).thenReturn(Exists.NOT_EXISTS);
+      when(userMapper.existsByUserId(any())).thenReturn(Existence.NO);
 
       // when
-      Exists result = userDataSource.existsByUserId(new UserId(UUID.randomUUID().toString()));
+      Existence result = userDataSource.existsByUserId(new UserId(UUID.randomUUID().toString()));
 
       // then
-      assertTrue(result.isNotExists());
+      assertTrue(result.no());
     }
   }
 
@@ -63,25 +60,25 @@ class UserDataSourceTest {
     @Test
     void 存在すること() {
       // given
-      when(userMapper.existsByPlayerId(any())).thenReturn(Exists.EXISTS);
+      when(userMapper.existsByPlayerId(any())).thenReturn(Existence.YES);
 
       // when
-      Exists result = userDataSource.existsByPlayerId(PlayerId.generate());
+      Existence result = userDataSource.existsByPlayerId(PlayerId.generate());
 
       // then
-      assertTrue(result.isExists());
+      assertTrue(result.yes());
     }
 
     @Test
     void 存在しないこと() {
       // given
-      when(userMapper.existsByPlayerId(any())).thenReturn(Exists.NOT_EXISTS);
+      when(userMapper.existsByPlayerId(any())).thenReturn(Existence.NO);
 
       // when
-      Exists result = userDataSource.existsByPlayerId(PlayerId.generate());
+      Existence result = userDataSource.existsByPlayerId(PlayerId.generate());
 
       // then
-      assertTrue(result.isNotExists());
+      assertTrue(result.no());
     }
   }
 

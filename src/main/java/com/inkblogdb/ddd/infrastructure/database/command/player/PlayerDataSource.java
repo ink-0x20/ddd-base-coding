@@ -4,7 +4,7 @@ import com.inkblogdb.ddd.domain.model.player.Player;
 import com.inkblogdb.ddd.domain.model.player.PlayerId;
 import com.inkblogdb.ddd.domain.model.player.PlayerName;
 import com.inkblogdb.ddd.domain.model.player.PlayerRepository;
-import com.inkblogdb.ddd.domain.type.Exists;
+import com.inkblogdb.ddd.domain.type.Existence;
 import com.inkblogdb.ddd.infrastructure.InfrastructureException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -17,7 +17,7 @@ public class PlayerDataSource implements PlayerRepository {
   private final PlayerDomainFactory playerDomainFactory;
 
   @Override
-  public Exists exists(PlayerId playerId) {
+  public Existence exists(PlayerId playerId) {
     return playerMapper.exists(playerId.value());
   }
 

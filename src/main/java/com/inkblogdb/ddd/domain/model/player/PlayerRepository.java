@@ -1,10 +1,10 @@
 package com.inkblogdb.ddd.domain.model.player;
 
-import com.inkblogdb.ddd.domain.type.Exists;
+import com.inkblogdb.ddd.domain.type.Existence;
 
 public interface PlayerRepository {
 
-  Exists exists(PlayerId playerId);
+  Existence exists(PlayerId playerId);
 
   Player findById(PlayerId playerId);
 

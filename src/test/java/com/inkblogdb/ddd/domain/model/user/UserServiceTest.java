@@ -1,7 +1,7 @@
 package com.inkblogdb.ddd.domain.model.user;
 
 import com.inkblogdb.ddd.domain.DomainException;
-import com.inkblogdb.ddd.domain.type.Exists;
+import com.inkblogdb.ddd.domain.type.Existence;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -27,7 +27,7 @@ class UserServiceTest {
   void addUserが実行されること() {
     // given
     UserId userId = new UserId(UUID.randomUUID().toString());
-    when(userRepository.existsByPlayerId(any())).thenReturn(Exists.NOT_EXISTS);
+    when(userRepository.existsByPlayerId(any())).thenReturn(Existence.NO);
 
     // when
     userService.addUser(userId);
@@ -41,16 +41,16 @@ class UserServiceTest {
     // given
     UserId userId = new UserId(UUID.randomUUID().toString());
     when(userRepository.existsByPlayerId(any()))
-        .thenReturn(Exists.EXISTS)
-        .thenReturn(Exists.EXISTS)
-        .thenReturn(Exists.EXISTS)
-        .thenReturn(Exists.EXISTS)
-        .thenReturn(Exists.EXISTS)
-        .thenReturn(Exists.EXISTS)
-        .thenReturn(Exists.EXISTS)
-        .thenReturn(Exists.EXISTS)
-        .thenReturn(Exists.EXISTS)
-        .thenReturn(Exists.NOT_EXISTS);
+        .thenReturn(Existence.YES)
+        .thenReturn(Existence.YES)
+        .thenReturn(Existence.YES)
+        .thenReturn(Existence.YES)
+        .thenReturn(Existence.YES)
+        .thenReturn(Existence.YES)
+        .thenReturn(Existence.YES)
+        .thenReturn(Existence.YES)
+        .thenReturn(Existence.YES)
+        .thenReturn(Existence.NO);
 
     // when
     userService.addUser(userId);
@@ -65,16 +65,16 @@ class UserServiceTest {
     // given
     UserId userId = new UserId(UUID.randomUUID().toString());
     when(userRepository.existsByPlayerId(any()))
-        .thenReturn(Exists.EXISTS)
-        .thenReturn(Exists.EXISTS)
-        .thenReturn(Exists.EXISTS)
-        .thenReturn(Exists.EXISTS)
-        .thenReturn(Exists.EXISTS)
-        .thenReturn(Exists.EXISTS)
-        .thenReturn(Exists.EXISTS)
-        .thenReturn(Exists.EXISTS)
-        .thenReturn(Exists.EXISTS)
-        .thenReturn(Exists.EXISTS);
+        .thenReturn(Existence.YES)
+        .thenReturn(Existence.YES)
+        .thenReturn(Existence.YES)
+        .thenReturn(Existence.YES)
+        .thenReturn(Existence.YES)
+        .thenReturn(Existence.YES)
+        .thenReturn(Existence.YES)
+        .thenReturn(Existence.YES)
+        .thenReturn(Existence.YES)
+        .thenReturn(Existence.YES);
 
     // when then
     assertEquals(

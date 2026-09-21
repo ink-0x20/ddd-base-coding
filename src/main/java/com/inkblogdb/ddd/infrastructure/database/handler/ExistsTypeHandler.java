@@ -1,6 +1,6 @@
 package com.inkblogdb.ddd.infrastructure.database.handler;
 
-import com.inkblogdb.ddd.domain.type.Exists;
+import com.inkblogdb.ddd.domain.type.Existence;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.MappedJdbcTypes;
@@ -13,35 +13,35 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @Component
-@MappedTypes(Exists.class)
+@MappedTypes(Existence.class)
 @MappedJdbcTypes(JdbcType.BOOLEAN)
-public class ExistsTypeHandler extends BaseTypeHandler<Exists> {
+public class ExistsTypeHandler extends BaseTypeHandler<Existence> {
 
   @Override
-  public void setNonNullParameter(PreparedStatement ps, int i, Exists parameter, JdbcType jdbcType) throws SQLException {
-    ps.setBoolean(i, parameter.isExists());
+  public void setNonNullParameter(PreparedStatement ps, int i, Existence parameter, JdbcType jdbcType) throws SQLException {
+    ps.setBoolean(i, parameter.yes());
   }
 
   @Override
-  public Exists getNullableResult(ResultSet rs, String columnName) throws SQLException {
+  public Existence getNullableResult(ResultSet rs, String columnName) throws SQLException {
     return toExists(rs.getBoolean(columnName), rs.wasNull());
   }
 
   @Override
-  public Exists getNullableResult(ResultSet rs, int columnIndex) throws SQLException {
+  public Existence getNullableResult(ResultSet rs, int columnIndex) throws SQLException {
     return toExists(rs.getBoolean(columnIndex), rs.wasNull());
   }
 
   @Override
-  public Exists getNullableResult(CallableStatement cs, int columnIndex) throws SQLException {
+  public Existence getNullableResult(CallableStatement cs, int columnIndex) throws SQLException {
     return toExists(cs.getBoolean(columnIndex), cs.wasNull());
   }
 
-  private Exists toExists(boolean value, boolean wasNull) {
+  private Existence toExists(boolean value, boolean wasNull) {
     if (wasNull) {
-      return Exists.NOT_EXISTS;
+      return Existence.NO;
     }
-    return value ? Exists.EXISTS : Exists.NOT_EXISTS;
+    return value ? Existence.YES : Existence.NO;
   }
 
 }

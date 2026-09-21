@@ -15,7 +15,7 @@ public class GetPlayerUseCase {
 
   public GetPlayerModel getPlayer(GetPlayerCommand getPlayerCommand) throws PlayerNotFoundException {
     PlayerId playerId = new PlayerId(getPlayerCommand.playerId());
-    if (playerRepository.exists(playerId).isNotExists()) {
+    if (playerRepository.exists(playerId).no()) {
       throw new PlayerNotFoundException("プレイヤーが存在しない");
     }
     Player player = playerRepository.findById(playerId);

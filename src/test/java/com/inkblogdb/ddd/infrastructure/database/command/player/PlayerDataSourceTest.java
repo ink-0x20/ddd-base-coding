@@ -3,7 +3,7 @@ package com.inkblogdb.ddd.infrastructure.database.command.player;
 import com.inkblogdb.ddd.domain.model.player.Player;
 import com.inkblogdb.ddd.domain.model.player.PlayerId;
 import com.inkblogdb.ddd.domain.model.player.PlayerName;
-import com.inkblogdb.ddd.domain.type.Exists;
+import com.inkblogdb.ddd.domain.type.Existence;
 import com.inkblogdb.ddd.infrastructure.InfrastructureException;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -31,25 +31,25 @@ class PlayerDataSourceTest {
     @Test
     void 存在すること() {
       // given
-      when(playerMapper.exists(any())).thenReturn(Exists.EXISTS);
+      when(playerMapper.exists(any())).thenReturn(Existence.YES);
 
       // when
-      Exists result = playerDataSource.exists(PlayerId.generate());
+      Existence result = playerDataSource.exists(PlayerId.generate());
 
       // then
-      assertTrue(result.isExists());
+      assertTrue(result.yes());
     }
 
     @Test
     void 存在しないこと() {
       // given
-      when(playerMapper.exists(any())).thenReturn(Exists.NOT_EXISTS);
+      when(playerMapper.exists(any())).thenReturn(Existence.NO);
 
       // when
-      Exists result = playerDataSource.exists(PlayerId.generate());
+      Existence result = playerDataSource.exists(PlayerId.generate());
 
       // then
-      assertTrue(result.isNotExists());
+      assertTrue(result.no());
     }
   }
 

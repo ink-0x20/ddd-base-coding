@@ -1,7 +1,7 @@
 package com.inkblogdb.ddd.infrastructure.database.query.song;
 
 import com.inkblogdb.ddd.domain.model.player.PlayerId;
-import com.inkblogdb.ddd.domain.model.player.song.unlock.SongUnlockStatus;
+import com.inkblogdb.ddd.domain.type.UnlockStatus;
 import com.inkblogdb.ddd.infrastructure.InfrastructureException;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -43,7 +43,7 @@ class SongQueryServiceImplTest {
               null,
               0,
               LocalDateTime.now(),
-              SongUnlockStatus.UNLOCKED.value(),
+              UnlockStatus.LOCKED.value(),
               LocalDateTime.now()
           )
       );
@@ -66,7 +66,7 @@ class SongQueryServiceImplTest {
       assertNull(result.stream().findFirst().get().unlockTargetId());
       assertEquals(0, result.stream().findFirst().get().unlockQuantity());
       assertNotNull(result.stream().findFirst().get().releaseDateTime());
-      assertEquals(SongUnlockStatus.UNLOCKED.value(), result.stream().findFirst().get().unlockStatus());
+      assertEquals(UnlockStatus.LOCKED.value(), result.stream().findFirst().get().unlockStatus());
       assertNotNull(result.stream().findFirst().get().unlockedAt());
     }
 

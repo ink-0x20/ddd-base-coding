@@ -1,7 +1,7 @@
 package com.inkblogdb.ddd.domain.model.player.song;
 
 import com.inkblogdb.ddd.domain.model.player.PlayerId;
-import com.inkblogdb.ddd.domain.model.player.song.unlock.SongUnlockStatus;
+import com.inkblogdb.ddd.domain.type.UnlockStatus;
 import com.inkblogdb.ddd.domain.model.song.SongId;
 import org.junit.jupiter.api.Test;
 
@@ -23,7 +23,7 @@ class PlayerSongTest {
     var playerSong = new PlayerSong(
         playerId,
         songId,
-        SongUnlockStatus.UNLOCKABLE_BY_GOLD,
+        UnlockStatus.LOCKED,
         songUnlockedDateTime
     );
 
@@ -33,7 +33,7 @@ class PlayerSongTest {
     // then
     assertEquals(playerId, playerSong.playerId());
     assertEquals(songId, playerSong.songId());
-    assertEquals(SongUnlockStatus.UNLOCKED, playerSong.songUnlockStatus());
+    assertEquals(UnlockStatus.UNLOCKED, playerSong.unlockStatus());
     assertNotEquals(songUnlockedDateTime.value(), playerSong.songUnlockedDateTime().value());
   }
 

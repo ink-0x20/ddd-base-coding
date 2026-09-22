@@ -3,7 +3,7 @@ package com.inkblogdb.ddd.infrastructure.database.command.player.song;
 import com.inkblogdb.ddd.domain.model.player.PlayerId;
 import com.inkblogdb.ddd.domain.model.song.SongId;
 import com.inkblogdb.ddd.domain.model.player.song.PlayerSong;
-import com.inkblogdb.ddd.domain.model.player.song.unlock.SongUnlockStatus;
+import com.inkblogdb.ddd.domain.type.UnlockStatus;
 import com.inkblogdb.ddd.domain.model.player.song.SongUnlockedDateTime;
 import com.inkblogdb.ddd.infrastructure.InfrastructureException;
 import org.junit.jupiter.api.Nested;
@@ -31,7 +31,7 @@ class PlaySongDomainFactoryTest {
       PlayerSongRecordEntity playerSongRecordEntity = new PlayerSongRecordEntity(
           playerId.value(),
           songId.value(),
-          SongUnlockStatus.UNLOCKED.value(),
+          UnlockStatus.LOCKED.value(),
           songUnlockedDateTime.value()
       );
 
@@ -42,7 +42,7 @@ class PlaySongDomainFactoryTest {
       assertNotNull(result);
       assertEquals(playerId.value(), result.playerId().value());
       assertEquals(songId.value(), result.songId().value());
-      assertEquals(SongUnlockStatus.UNLOCKED, result.songUnlockStatus());
+      assertEquals(UnlockStatus.LOCKED, result.unlockStatus());
       assertEquals(songUnlockedDateTime.value(), result.songUnlockedDateTime().value());
     }
 

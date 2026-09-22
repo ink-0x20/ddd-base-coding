@@ -33,7 +33,7 @@ public class PlayerSongDataSource implements PlayerSongRepository {
     PlayerSongRecordEntity entity = new PlayerSongRecordEntity(
         playerSong.playerId().value(),
         playerSong.songId().value(),
-        playerSong.songUnlockStatus().value(),
+        playerSong.unlockStatus().value(),
         playerSong.songUnlockedDateTime().value()
     );
     try {

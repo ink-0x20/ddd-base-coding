@@ -1,7 +1,7 @@
 package com.inkblogdb.ddd.domain.model.player.song;
 
 import com.inkblogdb.ddd.domain.model.player.PlayerId;
-import com.inkblogdb.ddd.domain.model.player.song.unlock.SongUnlockStatus;
+import com.inkblogdb.ddd.domain.type.UnlockStatus;
 import com.inkblogdb.ddd.domain.model.song.SongId;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,11 +14,11 @@ public class PlayerSong {
 
 	private final PlayerId playerId;
 	private final SongId songId;
-	private SongUnlockStatus songUnlockStatus;
+	private UnlockStatus unlockStatus;
 	private SongUnlockedDateTime songUnlockedDateTime;
 
 	public void unlock() {
-		songUnlockStatus = SongUnlockStatus.UNLOCKED;
+		unlockStatus = UnlockStatus.UNLOCKED;
 		songUnlockedDateTime = SongUnlockedDateTime.now();
 	}
 

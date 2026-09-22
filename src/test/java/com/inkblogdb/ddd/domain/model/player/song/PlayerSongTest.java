@@ -17,14 +17,14 @@ class PlayerSongTest {
     // given
     PlayerId playerId = PlayerId.generate();
     SongId songId = SongId.generate();
-    SongUnlockedDateTime songUnlockedDateTime = new SongUnlockedDateTime(
+    PlayerSongUnlockedDateTime playerSongUnlockedDateTime = new PlayerSongUnlockedDateTime(
         LocalDateTime.of(2000, 1, 1, 0, 0, 0)
     );
     var playerSong = new PlayerSong(
         playerId,
         songId,
         UnlockStatus.LOCKED,
-        songUnlockedDateTime
+        playerSongUnlockedDateTime
     );
 
     // when
@@ -34,7 +34,7 @@ class PlayerSongTest {
     assertEquals(playerId, playerSong.playerId());
     assertEquals(songId, playerSong.songId());
     assertEquals(UnlockStatus.UNLOCKED, playerSong.unlockStatus());
-    assertNotEquals(songUnlockedDateTime.value(), playerSong.songUnlockedDateTime().value());
+    assertNotEquals(playerSongUnlockedDateTime.value(), playerSong.playerSongUnlockedDateTime().value());
   }
 
 }

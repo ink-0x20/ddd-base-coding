@@ -15,11 +15,11 @@ public class PlayerSong {
 	private final PlayerId playerId;
 	private final SongId songId;
 	private UnlockStatus unlockStatus;
-	private SongUnlockedDateTime songUnlockedDateTime;
+	private PlayerSongUnlockedDateTime playerSongUnlockedDateTime;
 
 	public void unlock() {
 		unlockStatus = UnlockStatus.UNLOCKED;
-		songUnlockedDateTime = SongUnlockedDateTime.now();
+		playerSongUnlockedDateTime = PlayerSongUnlockedDateTime.now();
 	}
 
 }

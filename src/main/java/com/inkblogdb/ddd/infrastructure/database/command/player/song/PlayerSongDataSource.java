@@ -34,7 +34,7 @@ public class PlayerSongDataSource implements PlayerSongRepository {
         playerSong.playerId().value(),
         playerSong.songId().value(),
         playerSong.unlockStatus().value(),
-        playerSong.songUnlockedDateTime().value()
+        playerSong.playerSongUnlockedDateTime().value()
     );
     try {
       playerSongMapper.updateUnlockStatus(entity);

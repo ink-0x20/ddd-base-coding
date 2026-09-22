@@ -4,7 +4,7 @@ import com.inkblogdb.ddd.domain.model.player.PlayerId;
 import com.inkblogdb.ddd.domain.model.song.SongId;
 import com.inkblogdb.ddd.domain.model.player.song.PlayerSong;
 import com.inkblogdb.ddd.domain.type.UnlockStatus;
-import com.inkblogdb.ddd.domain.model.player.song.SongUnlockedDateTime;
+import com.inkblogdb.ddd.domain.model.player.song.PlayerSongUnlockedDateTime;
 import com.inkblogdb.ddd.infrastructure.InfrastructureException;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -27,12 +27,12 @@ class PlaySongDomainFactoryTest {
       // given
       PlayerId playerId = PlayerId.generate();
       SongId songId = SongId.generate();
-      SongUnlockedDateTime songUnlockedDateTime = SongUnlockedDateTime.now();
+      PlayerSongUnlockedDateTime playerSongUnlockedDateTime = PlayerSongUnlockedDateTime.now();
       PlayerSongRecordEntity playerSongRecordEntity = new PlayerSongRecordEntity(
           playerId.value(),
           songId.value(),
           UnlockStatus.LOCKED.value(),
-          songUnlockedDateTime.value()
+          playerSongUnlockedDateTime.value()
       );
 
       // when
@@ -43,7 +43,7 @@ class PlaySongDomainFactoryTest {
       assertEquals(playerId.value(), result.playerId().value());
       assertEquals(songId.value(), result.songId().value());
       assertEquals(UnlockStatus.LOCKED, result.unlockStatus());
-      assertEquals(songUnlockedDateTime.value(), result.songUnlockedDateTime().value());
+      assertEquals(playerSongUnlockedDateTime.value(), result.playerSongUnlockedDateTime().value());
     }
 
     @Test

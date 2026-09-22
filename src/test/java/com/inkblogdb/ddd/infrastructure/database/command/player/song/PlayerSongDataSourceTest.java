@@ -1,10 +1,10 @@
 package com.inkblogdb.ddd.infrastructure.database.command.player.song;
 
 import com.inkblogdb.ddd.domain.model.player.PlayerId;
+import com.inkblogdb.ddd.domain.model.player.song.PlayerSongUnlockedDateTime;
 import com.inkblogdb.ddd.domain.model.song.SongId;
 import com.inkblogdb.ddd.domain.model.player.song.PlayerSong;
 import com.inkblogdb.ddd.domain.type.UnlockStatus;
-import com.inkblogdb.ddd.domain.model.player.song.SongUnlockedDateTime;
 import com.inkblogdb.ddd.domain.type.Existence;
 import com.inkblogdb.ddd.infrastructure.InfrastructureException;
 import org.junit.jupiter.api.Nested;
@@ -66,12 +66,12 @@ class PlayerSongDataSourceTest {
       // given
       PlayerId playerId = PlayerId.generate();
       SongId songId = SongId.generate();
-      SongUnlockedDateTime songUnlockedDateTime = SongUnlockedDateTime.now();
+      PlayerSongUnlockedDateTime playerSongUnlockedDateTime = PlayerSongUnlockedDateTime.now();
       PlayerSong playerSong = new PlayerSong(
           playerId,
           songId,
           UnlockStatus.LOCKED,
-          songUnlockedDateTime
+          playerSongUnlockedDateTime
       );
       when(playSongDomainFactory.createFrom(any())).thenReturn(playerSong);
 
@@ -83,7 +83,7 @@ class PlayerSongDataSourceTest {
       assertEquals(playerId, result.playerId());
       assertEquals(songId, result.songId());
       assertEquals(UnlockStatus.LOCKED, result.unlockStatus());
-      assertEquals(songUnlockedDateTime, result.songUnlockedDateTime());
+      assertEquals(playerSongUnlockedDateTime, result.playerSongUnlockedDateTime());
     }
 
     @Test
@@ -105,12 +105,12 @@ class PlayerSongDataSourceTest {
       // given
       PlayerId playerId = PlayerId.generate();
       SongId songId = SongId.generate();
-      SongUnlockedDateTime songUnlockedDateTime = SongUnlockedDateTime.now();
+      PlayerSongUnlockedDateTime playerSongUnlockedDateTime = PlayerSongUnlockedDateTime.now();
       PlayerSong playerSong = new PlayerSong(
           playerId,
           songId,
           UnlockStatus.LOCKED,
-          songUnlockedDateTime
+          playerSongUnlockedDateTime
       );
 
       // when
@@ -125,12 +125,12 @@ class PlayerSongDataSourceTest {
       // given
       PlayerId playerId = PlayerId.generate();
       SongId songId = SongId.generate();
-      SongUnlockedDateTime songUnlockedDateTime = SongUnlockedDateTime.now();
+      PlayerSongUnlockedDateTime playerSongUnlockedDateTime = PlayerSongUnlockedDateTime.now();
       PlayerSong playerSong = new PlayerSong(
           playerId,
           songId,
           UnlockStatus.LOCKED,
-          songUnlockedDateTime
+          playerSongUnlockedDateTime
       );
       doThrow(InfrastructureException.class).when(playerSongMapper).updateUnlockStatus(any());
 

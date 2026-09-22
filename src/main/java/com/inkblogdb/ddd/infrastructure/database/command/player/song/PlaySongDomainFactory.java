@@ -4,7 +4,7 @@ import com.inkblogdb.ddd.domain.model.player.PlayerId;
 import com.inkblogdb.ddd.domain.model.song.SongId;
 import com.inkblogdb.ddd.domain.model.player.song.PlayerSong;
 import com.inkblogdb.ddd.domain.type.UnlockStatus;
-import com.inkblogdb.ddd.domain.model.player.song.SongUnlockedDateTime;
+import com.inkblogdb.ddd.domain.model.player.song.PlayerSongUnlockedDateTime;
 import com.inkblogdb.ddd.infrastructure.InfrastructureException;
 import org.springframework.stereotype.Component;
 
@@ -19,7 +19,7 @@ public class PlaySongDomainFactory {
         new PlayerId(playerSongRecordEntity.playerId()),
         new SongId(playerSongRecordEntity.songId()),
         UnlockStatus.createFrom(playerSongRecordEntity.unlockStatus()),
-        new SongUnlockedDateTime(playerSongRecordEntity.songUnlockedDateTime())
+        new PlayerSongUnlockedDateTime(playerSongRecordEntity.songUnlockedDateTime())
     );
   }
 

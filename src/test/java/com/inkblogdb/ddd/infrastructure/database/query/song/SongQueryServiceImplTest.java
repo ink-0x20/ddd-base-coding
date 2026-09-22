@@ -1,7 +1,7 @@
 package com.inkblogdb.ddd.infrastructure.database.query.song;
 
 import com.inkblogdb.ddd.domain.model.player.PlayerId;
-import com.inkblogdb.ddd.domain.model.player.song.SongUnlockStatus;
+import com.inkblogdb.ddd.domain.model.player.song.unlock.SongUnlockStatus;
 import com.inkblogdb.ddd.infrastructure.InfrastructureException;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

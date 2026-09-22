@@ -3,7 +3,7 @@ package com.inkblogdb.ddd.infrastructure.database.command.player.song;
 import com.inkblogdb.ddd.domain.model.player.PlayerId;
 import com.inkblogdb.ddd.domain.model.song.SongId;
 import com.inkblogdb.ddd.domain.model.player.song.PlayerSong;
-import com.inkblogdb.ddd.domain.model.player.song.SongUnlockStatus;
+import com.inkblogdb.ddd.domain.model.player.song.unlock.SongUnlockStatus;
 import com.inkblogdb.ddd.domain.model.player.song.SongUnlockedDateTime;
 import com.inkblogdb.ddd.domain.type.Existence;
 import com.inkblogdb.ddd.infrastructure.InfrastructureException;

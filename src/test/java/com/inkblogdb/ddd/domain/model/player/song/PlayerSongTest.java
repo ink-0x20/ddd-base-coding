@@ -1,6 +1,7 @@
 package com.inkblogdb.ddd.domain.model.player.song;
 
 import com.inkblogdb.ddd.domain.model.player.PlayerId;
+import com.inkblogdb.ddd.domain.model.player.song.unlock.SongUnlockStatus;
 import com.inkblogdb.ddd.domain.model.song.SongId;
 import org.junit.jupiter.api.Test;
 

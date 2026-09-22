@@ -1,9 +1,15 @@
-package com.inkblogdb.ddd.domain.model.player.song;
+package com.inkblogdb.ddd.domain.model.player.song.unlock;
 
 import com.inkblogdb.ddd.domain.DomainException;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.Accessors;
 
 import java.util.Arrays;
 
+@Getter
+@Accessors(fluent = true)
+@RequiredArgsConstructor
 public enum SongUnlockStatus {
 
   UNLOCKED(0),
@@ -12,14 +18,6 @@ public enum SongUnlockStatus {
   ;
 
   private final int value;
-
-  SongUnlockStatus(int value) {
-    this.value = value;
-  }
-
-  public int value() {
-    return this.value;
-  }
 
   public static SongUnlockStatus createFrom(int value) {
     return Arrays.stream(values())

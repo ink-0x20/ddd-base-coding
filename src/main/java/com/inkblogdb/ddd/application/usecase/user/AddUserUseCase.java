@@ -19,9 +19,12 @@ public class AddUserUseCase {
   @Transactional(isolation = Isolation.READ_COMMITTED)
   public void addUser(AddUserCommand addUserCommand) throws ExistsUserException {
     UserId userId = new UserId(addUserCommand.userId());
+
+    // ユーザー重複チェック
     if (userRepository.existsByUserId(userId).yes()) {
       throw new ExistsUserException("ユーザーが重複");
     }
+
     // ユーザーを追加
     userService.addUser(userId);
   }

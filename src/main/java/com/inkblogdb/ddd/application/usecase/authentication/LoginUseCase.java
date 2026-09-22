@@ -22,9 +22,12 @@ public class LoginUseCase {
   @Transactional(isolation = Isolation.READ_COMMITTED)
   public LoginModel login(AddUserCommand addUserCommand) throws UserNotFoundException {
     UserId userId = new UserId(addUserCommand.userId());
+
+    // ユーザー存在チェック
     if (userRepository.existsByUserId(userId).no()) {
       throw new UserNotFoundException("ユーザーが存在しない");
     }
+
     // ユーザーを検索
     User user = userRepository.findById(userId);
 

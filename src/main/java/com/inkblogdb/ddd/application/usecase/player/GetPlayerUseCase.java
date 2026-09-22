@@ -18,9 +18,13 @@ public class GetPlayerUseCase {
   @Transactional(isolation = Isolation.READ_COMMITTED)
   public GetPlayerModel getPlayer(GetPlayerCommand getPlayerCommand) throws PlayerNotFoundException {
     PlayerId playerId = new PlayerId(getPlayerCommand.playerId());
+
+    // プレイヤー重複チェック
     if (playerRepository.exists(playerId).no()) {
       throw new PlayerNotFoundException("プレイヤーが存在しない");
     }
+
+    // プレイヤー取得
     Player player = playerRepository.findById(playerId);
     return new GetPlayerModel(
         player.playerId().value(),

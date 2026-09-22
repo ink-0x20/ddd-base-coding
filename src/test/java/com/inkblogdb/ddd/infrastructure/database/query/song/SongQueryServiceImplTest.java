@@ -35,7 +35,13 @@ class SongQueryServiceImplTest {
           new SongQueryRecordEntity(
               "zzzzzzzz",
               "テスト楽曲",
-              5,
+              1,
+              2,
+              3,
+              4,
+              0,
+              null,
+              0,
               LocalDateTime.now(),
               SongUnlockStatus.UNLOCKED.value(),
               LocalDateTime.now()
@@ -52,7 +58,13 @@ class SongQueryServiceImplTest {
       assertTrue(result.stream().findFirst().isPresent());
       assertEquals("zzzzzzzz", result.stream().findFirst().get().id());
       assertEquals("テスト楽曲", result.stream().findFirst().get().name());
-      assertEquals(5, result.stream().findFirst().get().level());
+      assertEquals(1, result.stream().findFirst().get().easyLevel());
+      assertEquals(2, result.stream().findFirst().get().normalLevel());
+      assertEquals(3, result.stream().findFirst().get().hardLevel());
+      assertEquals(4, result.stream().findFirst().get().expertLevel());
+      assertEquals(0, result.stream().findFirst().get().unlockType());
+      assertNull(result.stream().findFirst().get().unlockTargetId());
+      assertEquals(0, result.stream().findFirst().get().unlockQuantity());
       assertNotNull(result.stream().findFirst().get().releaseDateTime());
       assertEquals(SongUnlockStatus.UNLOCKED.value(), result.stream().findFirst().get().unlockStatus());
       assertNotNull(result.stream().findFirst().get().unlockedAt());

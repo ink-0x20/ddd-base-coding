@@ -5,7 +5,13 @@ import java.time.LocalDateTime;
 public record SongQueryRecordEntity(
     String id,
     String name,
-    int level,
+    int easyLevel,
+    int normalLevel,
+    int hardLevel,
+    int expertLevel,
+    int unlockType,
+    String unlockTargetId,
+    int unlockQuantity,
     LocalDateTime publishAt,
     int unlockStatus,
     LocalDateTime unlockedAt

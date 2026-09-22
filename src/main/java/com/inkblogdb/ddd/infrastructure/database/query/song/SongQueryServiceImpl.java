@@ -19,12 +19,18 @@ public class SongQueryServiceImpl implements SongQueryService {
     return songQueryMapper.findAll(playerId.value())
         .stream()
         .map(entity -> new GetSongModel(
-                entity.id(),
-                entity.name(),
-                entity.level(),
-                entity.publishAt(),
-                entity.unlockStatus(),
-                entity.unlockedAt()
+            entity.id(),
+            entity.name(),
+            entity.easyLevel(),
+            entity.normalLevel(),
+            entity.hardLevel(),
+            entity.expertLevel(),
+            entity.unlockType(),
+            entity.unlockTargetId(),
+            entity.unlockQuantity(),
+            entity.publishAt(),
+            entity.unlockStatus(),
+            entity.unlockedAt()
             )
         )
         .toList();

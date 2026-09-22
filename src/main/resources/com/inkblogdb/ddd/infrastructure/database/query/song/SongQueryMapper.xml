@@ -8,7 +8,13 @@
         SELECT
             m.id,
             m.name,
-            m.level,
+            m.easy_level,
+            m.normal_level,
+            m.hard_level,
+            m.expert_level,
+            m.unlock_type,
+            m.unlock_target_id,
+            m.unlock_quantity,
             m.publish_at,
             t.unlock_status,
             t.unlocked_at

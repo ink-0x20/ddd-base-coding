@@ -29,7 +29,13 @@ public class SongController {
         .map(song -> new SongResponse(
             song.id(),
             song.name(),
-            song.level(),
+            song.easyLevel(),
+            song.normalLevel(),
+            song.hardLevel(),
+            song.expertLevel(),
+            song.unlockType(),
+            song.unlockTargetId(),
+            song.unlockQuantity(),
             song.releaseDateTime(),
             song.unlockStatus(),
             song.unlockedAt()

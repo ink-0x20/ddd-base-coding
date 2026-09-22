@@ -2,7 +2,7 @@ package com.inkblogdb.ddd.presentation.api.v1.player;
 
 import com.inkblogdb.ddd.application.usecase.player.GetPlayerModel;
 import com.inkblogdb.ddd.application.usecase.abort.ExistsPlayerException;
-import com.inkblogdb.ddd.application.usecase.abort.PlayerNotFoundException;
+import com.inkblogdb.ddd.application.usecase.abort.not_found.PlayerNotFoundException;
 import com.inkblogdb.ddd.application.usecase.player.AddPlayerCommand;
 import com.inkblogdb.ddd.application.usecase.player.AddPlayerUseCase;
 import com.inkblogdb.ddd.application.usecase.player.GetPlayerCommand;

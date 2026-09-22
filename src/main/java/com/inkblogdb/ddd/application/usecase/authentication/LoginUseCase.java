@@ -1,7 +1,7 @@
 package com.inkblogdb.ddd.application.usecase.authentication;
 
 import com.inkblogdb.ddd.application.usecase.user.AddUserCommand;
-import com.inkblogdb.ddd.application.usecase.abort.UserNotFoundException;
+import com.inkblogdb.ddd.application.usecase.abort.not_found.UserNotFoundException;
 import com.inkblogdb.ddd.domain.model.authentication.Authentication;
 import com.inkblogdb.ddd.domain.model.authentication.AuthenticationService;
 import com.inkblogdb.ddd.domain.model.user.User;

@@ -1,6 +1,6 @@
 package com.inkblogdb.ddd.application.usecase.player;
 
-import com.inkblogdb.ddd.application.usecase.abort.PlayerNotFoundException;
+import com.inkblogdb.ddd.application.usecase.abort.not_found.PlayerNotFoundException;
 import com.inkblogdb.ddd.domain.model.player.Player;
 import com.inkblogdb.ddd.domain.model.player.PlayerId;
 import com.inkblogdb.ddd.domain.model.player.PlayerRepository;

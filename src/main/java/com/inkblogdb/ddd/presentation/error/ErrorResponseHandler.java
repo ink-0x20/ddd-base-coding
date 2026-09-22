@@ -1,7 +1,7 @@
 package com.inkblogdb.ddd.presentation.error;
 
 import com.inkblogdb.ddd.application.usecase.abort.AbortException;
-import com.inkblogdb.ddd.application.usecase.abort.NotFoundException;
+import com.inkblogdb.ddd.application.usecase.abort.not_found.NotFoundException;
 import com.inkblogdb.ddd.domain.CustomException;
 import com.inkblogdb.ddd.domain.DomainException;
 import com.inkblogdb.ddd.infrastructure.InfrastructureException;

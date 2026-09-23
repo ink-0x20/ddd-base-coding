@@ -22,4 +22,13 @@ public class PlayerSong {
 		playerSongUnlockedDateTime = PlayerSongUnlockedDateTime.now();
 	}
 
+	public static PlayerSong createWithLocked(PlayerId playerId, SongId songId) {
+		return new PlayerSong(
+				playerId,
+				songId,
+				UnlockStatus.LOCKED,
+				PlayerSongUnlockedDateTime.now()
+		);
+	}
+
 }

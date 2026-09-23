@@ -1,0 +1,25 @@
+# テスト用ダミーデータ更新
+@userId = e7e01f93-cd35-41ad-aaa6-60db9c3ad7b1
+@songId = yyyyyyy2
+
+### ログイン
+POST http://localhost:8080/api/v1/auth/login
+Content-Type:  application/json
+
+{
+  "userId": "{{userId}}"
+}
+
+> {%
+  client.global.set("token", response.body.token);
+  client.global.set("playerId", response.body.playerId);
+%}
+
+### 楽曲解放
+POST http://localhost:8080/api/v1/players/{{playerId}}/songs/{{songId}}
+Authorization: Bearer {{token}}
+Content-Type:  application/json
+
+{
+  "action": "UNLOCK_BY_TICKET"
+}

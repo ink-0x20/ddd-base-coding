@@ -20,20 +20,3 @@ INSERT INTO m_songs(id, name, easy_level, normal_level, hard_level, expert_level
 INSERT INTO m_songs(id, name, easy_level, normal_level, hard_level, expert_level, unlock_type, unlock_quantity) VALUES ('yyyyyyy7', 'ダミー楽曲y7_チケットで解放', 1, 2, 3, 4, 1, 1);
 INSERT INTO m_songs(id, name, easy_level, normal_level, hard_level, expert_level, unlock_type, unlock_quantity) VALUES ('yyyyyyy8', 'ダミー楽曲y8_チケットで解放', 1, 2, 3, 4, 1, 1);
 INSERT INTO m_songs(id, name, easy_level, normal_level, hard_level, expert_level, unlock_type, unlock_quantity) VALUES ('yyyyyyy9', 'ダミー楽曲y9_チケットで解放', 1, 2, 3, 4, 1, 1);
--- プレイヤー楽曲
-INSERT INTO t_player_songs(player_id, song_id, unlock_status) VALUES ('zzzzzzzz', 'xxxxxxx2', 1);
-INSERT INTO t_player_songs(player_id, song_id, unlock_status) VALUES ('zzzzzzzz', 'xxxxxxx3', 1);
-INSERT INTO t_player_songs(player_id, song_id, unlock_status) VALUES ('zzzzzzzz', 'xxxxxxx4', 1);
-INSERT INTO t_player_songs(player_id, song_id, unlock_status) VALUES ('zzzzzzzz', 'xxxxxxx5', 1);
-INSERT INTO t_player_songs(player_id, song_id, unlock_status) VALUES ('zzzzzzzz', 'xxxxxxx6', 1);
-INSERT INTO t_player_songs(player_id, song_id, unlock_status) VALUES ('zzzzzzzz', 'xxxxxxx7', 1);
-INSERT INTO t_player_songs(player_id, song_id, unlock_status) VALUES ('zzzzzzzz', 'xxxxxxx8', 1);
-INSERT INTO t_player_songs(player_id, song_id, unlock_status) VALUES ('zzzzzzzz', 'xxxxxxx9', 1);
-INSERT INTO t_player_songs(player_id, song_id, unlock_status) VALUES ('zzzzzzzz', 'yyyyyyy2', 0);
-INSERT INTO t_player_songs(player_id, song_id, unlock_status) VALUES ('zzzzzzzz', 'yyyyyyy3', 0);
-INSERT INTO t_player_songs(player_id, song_id, unlock_status) VALUES ('zzzzzzzz', 'yyyyyyy4', 0);
-INSERT INTO t_player_songs(player_id, song_id, unlock_status) VALUES ('zzzzzzzz', 'yyyyyyy5', 0);
-INSERT INTO t_player_songs(player_id, song_id, unlock_status) VALUES ('zzzzzzzz', 'yyyyyyy6', 0);
-INSERT INTO t_player_songs(player_id, song_id, unlock_status) VALUES ('zzzzzzzz', 'yyyyyyy7', 0);
-INSERT INTO t_player_songs(player_id, song_id, unlock_status) VALUES ('zzzzzzzz', 'yyyyyyy8', 0);
-INSERT INTO t_player_songs(player_id, song_id, unlock_status) VALUES ('zzzzzzzz', 'yyyyyyy9', 0);

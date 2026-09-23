@@ -1,11 +1,10 @@
 package com.inkblogdb.ddd.infrastructure.database.command.player.song;
 
 import com.inkblogdb.ddd.domain.model.player.PlayerId;
+import com.inkblogdb.ddd.domain.model.player.song.PlayerSong;
 import com.inkblogdb.ddd.domain.model.player.song.PlayerSongUnlockedDateTime;
 import com.inkblogdb.ddd.domain.model.song.SongId;
-import com.inkblogdb.ddd.domain.model.player.song.PlayerSong;
 import com.inkblogdb.ddd.domain.type.UnlockStatus;
-import com.inkblogdb.ddd.domain.type.Existence;
 import com.inkblogdb.ddd.infrastructure.InfrastructureException;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -13,6 +12,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -29,37 +30,6 @@ class PlayerSongDataSourceTest {
   private PlaySongDomainFactory playSongDomainFactory;
 
   @Nested
-  class exists {
-    @Test
-    void 存在すること() {
-      // given
-      PlayerId playerId = PlayerId.generate();
-      SongId songId = SongId.generate();
-      when(playerSongMapper.exists(any(), any())).thenReturn(Existence.YES);
-
-      // when
-      Existence result = playerSongDataSource.exists(playerId, songId);
-
-      // then
-      assertTrue(result.yes());
-    }
-
-    @Test
-    void 存在しないこと() {
-      // given
-      PlayerId playerId = PlayerId.generate();
-      SongId songId = SongId.generate();
-      when(playerSongMapper.exists(any(), any())).thenReturn(Existence.NO);
-
-      // when
-      Existence result = playerSongDataSource.exists(playerId, songId);
-
-      // then
-      assertTrue(result.no());
-    }
-  }
-
-  @Nested
   class findById {
     @Test
     void 値が取得できること() {
@@ -73,17 +43,17 @@ class PlayerSongDataSourceTest {
           UnlockStatus.LOCKED,
           playerSongUnlockedDateTime
       );
-      when(playSongDomainFactory.createFrom(any())).thenReturn(playerSong);
+      when(playSongDomainFactory.createFrom(any())).thenReturn(Optional.of(playerSong));
 
       // when
-      PlayerSong result = playerSongDataSource.findById(playerId, songId);
+      var result = playerSongDataSource.findById(playerId, songId);
 
       // then
-      assertNotNull(result);
-      assertEquals(playerId, result.playerId());
-      assertEquals(songId, result.songId());
-      assertEquals(UnlockStatus.LOCKED, result.unlockStatus());
-      assertEquals(playerSongUnlockedDateTime, result.playerSongUnlockedDateTime());
+      assertTrue(result.isPresent());
+      assertEquals(playerId, result.get().playerId());
+      assertEquals(songId, result.get().songId());
+      assertEquals(UnlockStatus.LOCKED, result.get().unlockStatus());
+      assertEquals(playerSongUnlockedDateTime, result.get().playerSongUnlockedDateTime());
     }
 
     @Test
@@ -114,10 +84,10 @@ class PlayerSongDataSourceTest {
       );
 
       // when
-      playerSongDataSource.updateUnlockStatus(playerSong);
+      playerSongDataSource.insertUnlockStatus(playerSong);
 
       // then
-      verify(playerSongMapper).updateUnlockStatus(any());
+      verify(playerSongMapper).insertUnlockStatus(any());
     }
 
     @Test
@@ -132,10 +102,10 @@ class PlayerSongDataSourceTest {
           UnlockStatus.LOCKED,
           playerSongUnlockedDateTime
       );
-      doThrow(InfrastructureException.class).when(playerSongMapper).updateUnlockStatus(any());
+      doThrow(InfrastructureException.class).when(playerSongMapper).insertUnlockStatus(any());
 
       // when then
-      assertThrows(InfrastructureException.class, () -> playerSongDataSource.updateUnlockStatus(playerSong));
+      assertThrows(InfrastructureException.class, () -> playerSongDataSource.insertUnlockStatus(playerSong));
     }
   }
 

@@ -4,16 +4,6 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.inkblogdb.ddd.infrastructure.database.command.player.song.PlayerSongMapper">
 
-    <select id="exists" resultType="com.inkblogdb.ddd.domain.type.Existence">
-        SELECT EXISTS (
-            SELECT 1
-            FROM t_player_songs
-            WHERE
-                player_id = #{playerId} AND
-                song_id = #{songId}
-        )
-    </select>
-
     <select id="findById" resultType="com.inkblogdb.ddd.infrastructure.database.command.player.song.PlayerSongRecordEntity">
         SELECT
             player_id,
@@ -27,15 +17,11 @@
             song_id = #{songId}
     </select>
 
-    <update id="updateUnlockStatus">
-        UPDATE
-            t_player_songs
-        SET
-            unlock_status = #{unlockStatus},
-            unlocked_at = #{playerSongUnlockedDateTime}
-        WHERE
-            player_id = #{playerId} AND
-            song_id = #{songId}
-    </update>
+    <insert id="insertUnlockStatus">
+        INSERT INTO t_player_songs
+            (player_id, song_id, unlock_status, unlocked_at)
+        VALUES
+            (#{playerId}, #{songId}, #{unlockStatus}, #{playerSongUnlockedDateTime})
+    </insert>
 
 </mapper>

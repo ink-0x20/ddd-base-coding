@@ -6,7 +6,7 @@ public record PlayerSongRecordEntity(
     String playerId,
     String songId,
     int unlockStatus,
-    LocalDateTime songUnlockedDateTime
+    LocalDateTime playerSongUnlockedDateTime
 ) {
 
 }

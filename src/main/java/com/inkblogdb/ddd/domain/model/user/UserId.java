@@ -11,16 +11,25 @@ public record UserId(UUID value) {
     if (value == null) {
       throw new DomainException("ユーザーIDが空");
     }
+    if (value.version() != 4) {
+      throw new DomainException("ユーザーIDの形式が不正 " + value);
+    }
   }
 
   public UserId(String value) {
     if (value == null || value.isBlank()) {
       throw new DomainException("ユーザーIDが空");
     }
-    if (!value.matches("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$")) {
+    UUID v;
+    try {
+      v = UUID.fromString(value);
+      if (v.version() != 4) {
+        throw new DomainException("ユーザーIDの形式が不正 " + value);
+      }
+    } catch (Exception e) {
       throw new DomainException("ユーザーIDの形式が不正 " + value);
     }
-    this(UUID.fromString(value));
+    this(v);
   }
 
   @NonNull

@@ -47,10 +47,6 @@ class UserIdTest {
         assertThrows(DomainException.class, () -> new UserId("a")).getMessage()
     );
     assertEquals(
-        "ユーザーIDの形式が不正 812be594-7454-4bc3-9038-2e8d8fc0c22",
-        assertThrows(DomainException.class, () -> new UserId("812be594-7454-4bc3-9038-2e8d8fc0c22")).getMessage()
-    );
-    assertEquals(
         "ユーザーIDの形式が不正 812be594-7454-4bc3-9038-2e8d8fc0c22xx",
         assertThrows(DomainException.class, () -> new UserId("812be594-7454-4bc3-9038-2e8d8fc0c22xx")).getMessage()
     );

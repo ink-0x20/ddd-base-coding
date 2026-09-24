@@ -1,22 +1,11 @@
 package com.inkblogdb.ddd.domain.model.song;
 
-import com.inkblogdb.ddd.domain.DomainException;
+import com.inkblogdb.ddd.domain.type.Whole;
 
-public abstract class SongLevel {
-
-  private final int value;
+public abstract class SongLevel extends Whole {
 
   public SongLevel(int value) {
-    if (value < 1 || 99 < value) {
-      throw new DomainException(invalidErrorMessage());
-    }
-    this.value = value;
-  }
-
-  protected abstract String invalidErrorMessage();
-
-  public int value() {
-    return this.value;
+    super(value);
   }
 
 }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.inkblogdb.ddd.infrastructure.database.command.item.ItemMapper">
+
+    <select id="findById" resultType="com.inkblogdb.ddd.infrastructure.database.command.item.ItemRecordEntity">
+        SELECT
+            id,
+            name,
+            description
+        FROM
+            m_items
+        WHERE
+            id = #{itemId}
+    </select>
+
+</mapper>

@@ -23,4 +23,11 @@ public abstract class Whole {
     return this.value;
   }
 
+  public boolean isGreaterThanOrEqual(Whole other) {
+    if (other == null) {
+      return false;
+    }
+    return this.value >= other.value;
+  }
+
 }

@@ -23,3 +23,5 @@ INSERT INTO m_songs(id, name, easy_level, normal_level, hard_level, expert_level
 
 -- アイテムマスタ
 INSERT INTO m_items(id, name, description) VALUES (X'ace443fa11b5467e884ef9493f408795', '楽曲チケット', '楽曲の交換に使用するアイテム。');
+-- アイテム
+INSERT INTO t_player_items(player_id, item_id, quantity) VALUES ('zzzzzzzz', X'ace443fa11b5467e884ef9493f408795', 100);

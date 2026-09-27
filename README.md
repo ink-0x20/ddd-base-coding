@@ -19,10 +19,12 @@ DDD設計のベースとなるコーディングです。
   - MySQL
   - Flyway
   - h2
+    - [H2コンソール](http://localhost:8080/h2-console)
 - ツール関連
   - IntelliJ
   - Fork
-  - [Swagger UI](http://localhost:8080/swagger-ui/index.html)
+  - Swagger UI
+    - [APIドキュメント](http://localhost:8080/swagger-ui/index.html)
 
 ## 指向
 ### オブジェクト指向プログラミング（OOP）
@@ -185,7 +187,7 @@ CQRSに基づいたクエリ検索用のインターフェースとDTOを格納�
   - 機能の拡張がしやすく、変更時の影響が少なくなる
   - 子クラスは親クラスの仕様を壊さない
   - 膨大なインターフェースになりすぎないよう、役目などで小さなインターフェースに分割する
-  - 具体（クラス）ではなく、抽象（インターフェース）に依存する
+  - 具象（クラス）ではなく、抽象（インターフェース）に依存する
 - DRY原則
   - 同じ処理を書かないようにするのではなく、同じ意味の処理を書かないようにする
   - utilのような不特定多数の依存関係が発生するオブジェクトより、専門的で限定的なオブジェクトを作成しアクセス修飾子や継承などの構造自体で依存関係を制限する
@@ -209,8 +211,8 @@ CQRSに基づいたクエリ検索用のインターフェースとDTOを格納�
   - オブジェクトの生成を専門とするメソッドやクラスに任せる
   - レイヤー間のデータのやり取りの際、変換処理がややこしかったり量が多くなりがちなため、本来の処理を散らかさないようオブジェクト生成役に任せることで責務を分担させる
   - 実装例
-    - [src/main/java/com/inkblogdb/ddd/infrastructure/database/command/player/PlayerDomainFactory.java](src/main/java/com/inkblogdb/ddd/infrastructure/database/command/player/PlayerDomainFactory.java)
-    - [src/main/java/com/inkblogdb/ddd/infrastructure/database/command/player/PlayerDataSource.java](src/main/java/com/inkblogdb/ddd/infrastructure/database/command/player/PlayerDataSource.java)
+    - [ファクトリクラス](src/main/java/com/inkblogdb/ddd/infrastructure/database/command/player/PlayerDomainFactory.java)
+    - [ファクトリクラスを使用しているクラス](src/main/java/com/inkblogdb/ddd/infrastructure/database/command/player/PlayerDataSource.java)
 - Decorator（デコレーター）
   - 既存のオブジェクトをラッパークラスで覆うことで、元のコードを変更せずに機能を追加・拡張する
   - 分離することが難しい関心事や、複数のレイヤーにまたがる関心事を横断的関心事といい、具体的には下記のような内容が挙げられる
@@ -220,10 +222,15 @@ CQRSに基づいたクエリ検索用のインターフェースとDTOを格納�
     - トランザクション管理
   - 本来の処理の中で書いてしまうと煩雑になり、同じような処理を各所に書く必要が発生するため、元のコードを変えることなく実行する前・後・前後等に処理を追加できる
   - 実装例
-    - [src/main/java/com/inkblogdb/ddd/infrastructure/log/CleanArchitectureLayerLogger.java](src/main/java/com/inkblogdb/ddd/infrastructure/log/CleanArchitectureLayerLogger.java)
+    - [ロガークラス](src/main/java/com/inkblogdb/ddd/infrastructure/log/CleanArchitectureLayerLogger.java)
 - Strategy（ストラテジー）
   - 目的や状況に応じてどの処理を使うかを切り替える
   - インターフェースを用いて実装をカプセル化し、やることは同じでやり方が異なる処理を交換可能にすることで、if文やswitch文の乱立を防ぐ
+  - 実装例
+    - [インターフェース](src/main/java/com/inkblogdb/ddd/domain/model/player/song/unlock/PlayerSongUnlockHandler.java)
+    - [実装クラス1_チケットで解放](src/main/java/com/inkblogdb/ddd/domain/model/player/song/unlock/PlayerSongUnlockByTicketHandler.java)
+    - [ファクトリクラス](src/main/java/com/inkblogdb/ddd/domain/model/player/song/unlock/PlayerSongUnlockHandleFactory.java)
+    - [使用クラス](src/main/java/com/inkblogdb/ddd/application/usecase/player/song/UnlockSongUseCase.java)
 - State（ステート）
   - 状態そのものをクラスとして表現し、状態に応じた挙動の切り替える
   - 状態によって複雑な分岐になる場合、各状態をクラスで表現することで整理され、今どういう状態でどうすれば次にどういう状態になるかがわかりやすく、状況の変化によって状態が遷移していく

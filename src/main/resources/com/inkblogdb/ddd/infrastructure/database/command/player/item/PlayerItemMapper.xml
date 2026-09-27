@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.inkblogdb.ddd.infrastructure.database.command.player.item.PlayerItemMapper">
+
+    <select id="findById" resultType="com.inkblogdb.ddd.infrastructure.database.command.player.item.PlayerItemRecordEntity">
+        SELECT
+            player_id,
+            item_id,
+            quantity
+        FROM
+            t_player_items
+        WHERE
+            player_id = #{playerId} AND
+            item_id = #{itemId}
+    </select>
+
+    <insert id="updateQuantity">
+        UPDATE
+            t_player_items
+        SET
+            quantity = #{quantity}
+        WHERE
+            player_id = #{playerId} AND
+            item_id = #{itemId}
+    </insert>
+
+</mapper>

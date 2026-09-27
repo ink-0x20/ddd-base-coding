@@ -46,7 +46,7 @@ class PlaySongDomainFactoryTest {
     }
 
     @Test
-    void nullの場合エラーになること() {
+    void nullの場合空になること() {
       // when
       var result = playSongDomainFactory.createFrom(null);
 

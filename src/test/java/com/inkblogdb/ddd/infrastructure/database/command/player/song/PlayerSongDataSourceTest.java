@@ -69,7 +69,7 @@ class PlayerSongDataSourceTest {
   }
 
   @Nested
-  class updateUnlockStatus {
+  class insertUnlockStatus {
     @Test
     void 値が保存できること() {
       // given

@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 @OpenAPIDefinition(
     info = @Info(
         title = "DDDベースコーディング用のダミーAPI",
-        description = "Spring Bootから自動生成されたAPIドキュメントです",
+        description = "自動生成されたAPIドキュメントです",
         version = "1.0.0"
     ),
     servers = {

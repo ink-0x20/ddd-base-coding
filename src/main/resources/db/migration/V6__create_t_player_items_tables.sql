@@ -7,4 +7,4 @@ CREATE TABLE IF NOT EXISTS t_player_items (
     PRIMARY KEY (player_id, item_id),
     CONSTRAINT fk_t_player_items_t_players_id FOREIGN KEY (player_id) REFERENCES t_players (id),
     CONSTRAINT fk_t_player_items_m_items_id FOREIGN KEY (item_id) REFERENCES m_items (id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='アイテム';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='プレイヤーアイテム';

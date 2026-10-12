@@ -13,7 +13,7 @@ public record SongQueryRecordEntity(
     String unlockTargetId,
     int unlockQuantity,
     LocalDateTime publishAt,
-    int unlockStatus,
+    Integer unlockStatus,
     LocalDateTime unlockedAt
 ) {
 

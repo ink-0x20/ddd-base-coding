@@ -13,7 +13,7 @@ public record GetSongModel(
     String unlockTargetId,
     int unlockQuantity,
     LocalDateTime releaseDateTime,
-    int unlockStatus,
+    Integer unlockStatus,
     LocalDateTime unlockedAt
 ) {
 

@@ -19,15 +19,12 @@
             t.unlock_status,
             t.unlocked_at
         FROM
-            t_player_songs t
-        INNER JOIN
             m_songs m
+        LEFT JOIN
+            t_player_songs t
         ON
-            t.song_id = m.id
-        WHERE
+            m.id = t.song_id AND
             t.player_id = #{playerId}
-        ORDER BY
-            m.publish_at ASC
     </select>
 
 </mapper>

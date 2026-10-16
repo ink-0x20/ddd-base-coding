@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.inkblogdb.ddd.infrastructure.database.query.story.main.MainStoryQueryMapper">
+
+    <select id="findAll" resultType="com.inkblogdb.ddd.infrastructure.database.query.story.main.MainStoryQueryRecordEntity">
+        SELECT
+            m.id,
+            m.name,
+            m.chapter,
+            m.episode,
+            t.read_at
+        FROM
+            m_main_stories m
+        LEFT JOIN
+            t_player_main_stories t
+        ON
+            m.id = t.story_id AND
+            t.player_id = #{playerId}
+    </select>
+
+</mapper>

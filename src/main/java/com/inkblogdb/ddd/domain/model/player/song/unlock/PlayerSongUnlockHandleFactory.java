@@ -19,6 +19,9 @@ public class PlayerSongUnlockHandleFactory {
           songRepository,
           playerItemRepository
       );
+      case UNLOCK_BY_STORY -> new PlayerSongUnlockByStoryHandler(
+          songRepository
+      );
       case null -> throw new DomainException("プレイヤー楽曲解放操作が空");
     };
   }

@@ -10,7 +10,8 @@ import java.util.Arrays;
 @Accessors(fluent = true)
 public enum PlayerSongUnlockAction {
 
-  UNLOCK_BY_TICKET;
+  UNLOCK_BY_TICKET,
+  UNLOCK_BY_STORY;
 
   public static PlayerSongUnlockAction createFrom(String value) {
     return Arrays.stream(values())

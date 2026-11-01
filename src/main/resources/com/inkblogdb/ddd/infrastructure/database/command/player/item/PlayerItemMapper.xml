@@ -16,7 +16,7 @@
             item_id = #{itemId}
     </select>
 
-    <insert id="updateQuantity">
+    <update id="updateQuantity">
         UPDATE
             t_player_items
         SET
@@ -24,6 +24,6 @@
         WHERE
             player_id = #{playerId} AND
             item_id = #{itemId}
-    </insert>
+    </update>
 
 </mapper>

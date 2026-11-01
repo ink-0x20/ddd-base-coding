@@ -84,7 +84,7 @@ class UnlockSongUseCaseTest {
   }
 
   @Test
-  void 解放条件に合致していない場合エラーになること() throws FailedPlayerSongUnlockException {
+  void 解放条件に合致していない場合エラーになること() {
     // given
     PlayerId playerId = PlayerId.generate();
     SongId songId = SongId.generate();

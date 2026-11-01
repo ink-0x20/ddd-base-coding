@@ -236,6 +236,7 @@ CQRSに基づいたクエリ検索用のインターフェースとDTOを格納�
   - 実装例
     - [インターフェース](src/main/java/com/inkblogdb/ddd/domain/model/player/song/unlock/PlayerSongUnlockHandler.java)
     - [実装クラス1_チケットで解放](src/main/java/com/inkblogdb/ddd/domain/model/player/song/unlock/PlayerSongUnlockByTicketHandler.java)
+    - [実装クラス2_ストーリーで解放](src/main/java/com/inkblogdb/ddd/domain/model/player/song/unlock/PlayerSongUnlockByStoryHandler.java)
     - [ファクトリクラス](src/main/java/com/inkblogdb/ddd/domain/model/player/song/unlock/PlayerSongUnlockHandleFactory.java)
     - [使用クラス](src/main/java/com/inkblogdb/ddd/application/usecase/player/song/UnlockSongUseCase.java)
 - State（ステート）
